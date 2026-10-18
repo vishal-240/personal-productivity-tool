@@ -1,50 +1,31 @@
-# Daylight — Personal Productivity PWA
+# Daylight v2 — Weekly Task Board
 
-A beginner-friendly, local-first productivity web app for desktop and iPhone.
+## What changed
+- Added a Monday-first weekly task board with previous/next week navigation.
+- Add a task directly to a selected day.
+- Complete tasks from the board.
+- View and schedule active tasks without due dates.
+- Uses the existing `daylight-pwa-data-v1` localStorage key and existing task objects. No database reset or migration is performed.
+- Service worker cache name changed to `daylight-shell-v2` so the browser can fetch the updated app shell.
 
-## Included
-- Tasks with priority and due date
-- Daily habits and simple streaks
-- Focus timer with session history
-- Daily reflection
-- JSON export/import
-- Delete-all-data action
-- Responsive layout and basic offline app-shell caching
+## Critical safe-update steps
+1. On each device, open the currently working Daylight app and use **Export backup (JSON)**.
+2. Keep each backup separately labelled, e.g. `daylight-before-weekly-board-windows.json` and `daylight-before-weekly-board-iphone.json`.
+3. Upload the updated files in this folder to the root of the existing `personal-productivity-tool` repository, replacing the same-named files. Do not delete the repository or clear website data.
+4. Wait for GitHub Pages deployment to finish. GitHub says a site change can take up to 10 minutes to appear: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+5. On Windows, open the live site and hard refresh with Ctrl+F5. Test first with a harmless task, then confirm existing tasks/habits/reflections remain.
+6. On iPhone, open the Home Screen app while online and refresh/reopen it. If the old version remains, open the same site in Safari, reload it, then close and reopen the Home Screen app. The service worker cache version has been bumped.
+7. Verify the board on both devices. If any data appears missing, stop editing and import that device's own backup. Do not import the Windows backup over iPhone data or vice versa unless you deliberately want to replace that device's dataset.
 
-## Privacy notes
-- App records are stored in `localStorage` in the browser profile where the app is opened.
-- The app code does not call external APIs or include analytics/advertising SDKs.
-- Browser storage is not an encrypted vault. Anyone with access to the unlocked browser/device profile may be able to access it.
-- Exported backups are plain JSON. Keep them somewhere private.
-- Local data does not automatically sync between Windows and iPhone.
-- The timer may be suspended or delayed if iOS puts Safari in the background. Keep the app open for reliable timing.
-- This starter has not undergone a professional security audit.
+## Privacy and storage
+- This is a static web app with no account, analytics or external API calls.
+- GitHub Pages source code is publicly readable in a public repository. Never commit task backups or personal data.
+- Each browser/device stores data separately. This update intentionally keeps the same localStorage key.
+- Local browser storage is not encrypted; keep device access protected and backups private.
 
-## Run on Windows for local testing
-1. Install Python 3 from https://www.python.org/downloads/ if needed.
-2. Extract the ZIP to a folder.
-3. Open that folder in File Explorer.
-4. Click the address bar, type `cmd`, and press Enter.
-5. Run:
-   `python -m http.server 8000`
-6. On the same laptop, open `http://localhost:8000` in your browser.
-
-To test from an iPhone on the same Wi-Fi, find your laptop's local IPv4 address using `ipconfig`, then open `http://YOUR-LAPTOP-IP:8000` in iPhone Safari. This local HTTP test is for development only; service workers/PWA installation generally require HTTPS or localhost, so this address may not support offline installation. Do not expose the server to public Wi-Fi/internet.
-
-## Install on iPhone Home Screen
-For a reliable installable PWA, host these files on an HTTPS static host. A no-cost option may be available on services such as GitHub Pages, but check their current terms and configure the repository carefully.
-1. Publish the files to an HTTPS static site.
-2. Open the HTTPS site in Safari on iPhone.
-3. Tap Share.
-4. Choose Add to Home Screen. If shown, enable Open as Web App.
-5. Open the new Home Screen icon and test adding a sample task.
-6. Export a backup and test import before relying on the app.
-
-## Important storage detail
-`localStorage` is origin-specific. Data created on `localhost` on Windows, a hosted domain on Windows, and that hosted domain on iPhone are separate stores. Installing the same website on iPhone does not transfer your Windows browser data. Use the app's export/import feature to move a backup manually.
-
-## Limitations
-- No cloud sync, account, calendar integration, recurring task scheduler, or push notifications.
-- Habits are daily check-ins; streaks are calculated from consecutive calendar days.
-- Timer completion is most reliable while the app remains open.
-- Service-worker caching is a starter offline shell, not a guarantee that every browser lifecycle/offline state will behave identically.
+## Weekly board behavior
+- Week begins Monday.
+- Tasks with due dates appear on their date.
+- Tasks without a due date can be shown in the unscheduled panel and assigned a date.
+- Existing tasks are not duplicated by this update.
+- Dates use local calendar dates.

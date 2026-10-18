@@ -85,6 +85,31 @@
     .filter-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:13px; }
     .filter-btn { border:1px solid var(--line); background:white; color:var(--muted); padding:7px 10px; border-radius:999px; font-size:12px; }
     .filter-btn.active { background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650; }
+
+    .week-toolbar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .week-range { font-size:13px; color:var(--muted); min-width:120px; text-align:center; }
+    .week-board { display:grid; grid-template-columns:repeat(7,minmax(145px,1fr)); gap:10px; overflow-x:auto; padding:2px 2px 10px; }
+    .day-column { border:1px solid var(--line); border-radius:15px; padding:11px; min-height:150px; background:var(--panel); }
+    .day-column.today { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent-soft) inset; }
+    .day-column.past .day-name { color:var(--muted); }
+    .day-head { display:flex; justify-content:space-between; align-items:flex-start; gap:5px; margin-bottom:10px; }
+    .day-name { font-size:12px; font-weight:750; }
+    .day-date { font-size:11px; color:var(--muted); margin-top:3px; }
+    .day-count { font-size:10px; color:var(--muted); background:var(--bg); padding:3px 6px; border-radius:999px; }
+    .day-task-list { display:grid; gap:7px; }
+    .week-task { display:flex; align-items:flex-start; gap:6px; padding:8px; border-radius:10px; background:var(--bg); }
+    .week-task input { width:15px; height:15px; accent-color:var(--accent); flex-shrink:0; margin:1px 0 0; }
+    .week-task-title { font-size:11px; line-height:1.35; overflow-wrap:anywhere; flex:1; }
+    .week-task.done .week-task-title { text-decoration:line-through; color:var(--muted); }
+    .week-task .pill { font-size:9px; padding:2px 5px; display:inline-block; margin-top:4px; }
+    .day-add { width:100%; border:1px dashed var(--line); color:var(--muted); background:transparent; border-radius:9px; padding:7px 4px; margin-top:9px; font-size:11px; }
+    .day-add:hover { border-color:var(--accent); color:var(--accent); }
+    .week-bottom { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:8px; flex-wrap:wrap; }
+    @media (max-width:760px) {
+      .week-board { grid-template-columns:repeat(7,minmax(190px,72vw)); }
+      .week-range { order:3; width:100%; text-align:left; }
+    }
+
     .section-anchor { scroll-margin-top:16px; }
     @media (max-width:760px) {
       .app { padding:18px 13px calc(90px + env(safe-area-inset-bottom)); }
@@ -142,6 +167,27 @@
         <div class="stat"><div class="stat-num" id="habitsStat">0/0</div><div class="stat-label">Habits today</div></div>
         <div class="stat"><div class="stat-num" id="focusStat">0m</div><div class="stat-label">Focus today</div></div>
       </div>
+    </section>
+
+    <section class="card" id="weekSection" style="margin-bottom:16px">
+      <div class="card-head" style="align-items:flex-start">
+        <div><h3>Weekly task board</h3><div class="muted">Plan the week, one day at a time.</div></div>
+        <div class="week-toolbar">
+          <button class="btn ghost small" id="weekPrev" aria-label="Previous week">←</button>
+          <button class="btn secondary small" id="weekToday">This week</button>
+          <button class="btn ghost small" id="weekNext" aria-label="Next week">→</button>
+        </div>
+      </div>
+      <div class="week-bottom" style="margin:0 0 12px">
+        <div class="week-range" id="weekRange" aria-live="polite"></div>
+        <div class="muted">Select a day to add a task. Swipe sideways on mobile.</div>
+      </div>
+      <div class="week-board" id="weekBoard" aria-label="Tasks grouped by day"></div>
+      <div class="week-bottom">
+        <span class="muted" id="weekSummary">Tasks scheduled this week</span>
+        <button class="btn ghost small" id="showUnscheduled">Show unscheduled tasks</button>
+      </div>
+      <div id="unscheduledPanel" hidden style="margin-top:12px"></div>
     </section>
 
     <div class="grid">
@@ -218,6 +264,7 @@
   </main>
 
   <nav class="bottom-nav" aria-label="Main navigation">
+    <a href="#weekSection"><span>▦</span>Week</a>
     <a href="#tasksSection"><span>✓</span>Tasks</a>
     <a href="#habitsSection"><span>↗</span>Habits</a>
     <a href="#focusSection"><span>◷</span>Focus</a>
@@ -347,9 +394,116 @@
   function renderReflection() {
     document.getElementById("reflection").value = data.reflections[today()] || "";
   }
-  function renderAll() {
-    renderHeader(); renderProgress(); renderTasks(); renderHabits(); renderTimer(); renderReflection();
+
+  // Weekly board is a view of the existing task records. It does not create
+  // a second task store, so existing localStorage data remains compatible.
+  let weekOffset = 0;
+  let showUnscheduled = false;
+  function dateKey(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth()+1).padStart(2,"0");
+    const d = String(date.getDate()).padStart(2,"0");
+    return `${y}-${m}-${d}`;
   }
+  function parseLocalDate(key) {
+    const parts = key.split("-").map(Number);
+    return new Date(parts[0], parts[1]-1, parts[2], 12, 0, 0, 0);
+  }
+  function startOfWeek(date) {
+    const d = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12);
+    const day = (d.getDay()+6)%7; // Monday first
+    d.setDate(d.getDate()-day);
+    return d;
+  }
+  function shiftDate(date, days) {
+    const d = new Date(date);
+    d.setDate(d.getDate()+days);
+    return d;
+  }
+  function shortDate(date) {
+    return date.toLocaleDateString(undefined,{month:"short",day:"numeric"});
+  }
+  function renderWeekBoard() {
+    const start = startOfWeek(new Date());
+    start.setDate(start.getDate()+weekOffset*7);
+    const end = shiftDate(start,6);
+    const range = start.getFullYear()===end.getFullYear()
+      ? `${shortDate(start)} – ${end.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"})}`
+      : `${shortDate(start)} ${start.getFullYear()} – ${shortDate(end)} ${end.getFullYear()}`;
+    document.getElementById("weekRange").textContent = range;
+    const board = document.getElementById("weekBoard");
+    const dates = Array.from({length:7},(_,i)=>shiftDate(start,i));
+    let scheduledCount = 0;
+    board.innerHTML = dates.map(date => {
+      const key = dateKey(date);
+      const dayTasks = data.tasks.filter(t=>t.due===key).sort((a,b)=>Number(a.done)-Number(b.done)||(a.priority==="High"?-1:0)-(b.priority==="High"?-1:0)||(a.createdAt||0)-(b.createdAt||0));
+      scheduledCount += dayTasks.length;
+      const isToday = key===today();
+      const isPast = key<today();
+      return `<div class="day-column ${isToday?"today":""} ${isPast?"past":""}">
+        <div class="day-head">
+          <div><div class="day-name">${date.toLocaleDateString(undefined,{weekday:"short"})}${isToday?" · Today":""}</div><div class="day-date">${shortDate(date)}</div></div>
+          <span class="day-count">${dayTasks.filter(t=>!t.done).length} left</span>
+        </div>
+        <div class="day-task-list">${dayTasks.length ? dayTasks.map(t=>`
+          <div class="week-task ${t.done?"done":""}">
+            <input type="checkbox" data-week-complete="${esc(t.id)}" ${t.done?"checked":""} aria-label="Complete ${esc(t.title)}">
+            <div class="week-task-title">${esc(t.title)}${t.priority==="High"?'<span class="pill high">High</span>':""}</div>
+          </div>`).join("") : '<div class="muted" style="font-size:11px;padding:8px 2px">No tasks</div>'}</div>
+        <button class="day-add" data-add-day="${key}">＋ Add task</button>
+      </div>`;
+    }).join("");
+    document.getElementById("weekSummary").textContent = `${scheduledCount} task${scheduledCount===1?"":"s"} scheduled this week`;
+    document.getElementById("showUnscheduled").textContent = showUnscheduled ? "Hide unscheduled tasks" : "Show unscheduled tasks";
+    renderUnscheduled();
+  }
+  function renderUnscheduled() {
+    const panel = document.getElementById("unscheduledPanel");
+    panel.hidden = !showUnscheduled;
+    if (!showUnscheduled) { panel.innerHTML=""; return; }
+    const noDate = data.tasks.filter(t=>!t.due && !t.done);
+    panel.innerHTML = `<h3 style="margin-bottom:10px">Unscheduled active tasks</h3>` + (noDate.length
+      ? `<div class="task-list">${noDate.map(t=>`<div class="task"><div class="task-main"><div class="task-title">${esc(t.title)}</div><div class="task-meta"><span class="pill ${t.priority==="High"?"high":""}">${esc(t.priority||"Normal")}</span></div></div><button class="btn secondary small" data-schedule-task="${esc(t.id)}">Schedule</button></div>`).join("")}</div>`
+      : `<div class="empty">No unscheduled active tasks.</div>`);
+  }
+
+  function renderAll() {
+    renderHeader(); renderProgress(); renderTasks(); renderHabits(); renderTimer(); renderReflection(); renderWeekBoard();
+  }
+
+  document.getElementById("weekPrev").addEventListener("click", () => { weekOffset--; renderWeekBoard(); });
+  document.getElementById("weekNext").addEventListener("click", () => { weekOffset++; renderWeekBoard(); });
+  document.getElementById("weekToday").addEventListener("click", () => { weekOffset=0; renderWeekBoard(); });
+  document.getElementById("weekBoard").addEventListener("click", e => {
+    const key = e.target.closest("[data-add-day]")?.dataset.addDay;
+    if (!key) return;
+    const title = prompt(`Add a task for ${parseLocalDate(key).toLocaleDateString(undefined,{weekday:"long",month:"short",day:"numeric"})}:`);
+    if (title === null) return;
+    if (!title.trim()) { showToast("Task title cannot be empty."); return; }
+    data.tasks.push({id:newId(),title:title.trim(),priority:"Normal",due:key,done:false,createdAt:Date.now()});
+    save(); renderAll(); showToast("Task added to the selected day.");
+  });
+  document.getElementById("weekBoard").addEventListener("change", e => {
+    const id = e.target.dataset.weekComplete;
+    if (!id) return;
+    const task = data.tasks.find(t=>t.id===id);
+    if (task) task.done = e.target.checked;
+    save(); renderAll();
+  });
+  document.getElementById("showUnscheduled").addEventListener("click", () => { showUnscheduled=!showUnscheduled; renderWeekBoard(); });
+  document.getElementById("unscheduledPanel").addEventListener("click", e => {
+    const id = e.target.closest("[data-schedule-task]")?.dataset.scheduleTask;
+    if (!id) return;
+    const task = data.tasks.find(t=>t.id===id);
+    if (!task) return;
+    const entered = prompt("Enter a due date (YYYY-MM-DD):", today());
+    if (entered === null) return;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(entered) || Number.isNaN(parseLocalDate(entered).getTime()) || dateKey(parseLocalDate(entered))!==entered) {
+      showToast("Use a valid date in YYYY-MM-DD format."); return;
+    }
+    task.due=entered; save(); renderAll(); showToast("Task scheduled.");
+  });
+
   document.getElementById("taskForm").addEventListener("submit", e => {
     e.preventDefault();
     const input = document.getElementById("taskInput");
