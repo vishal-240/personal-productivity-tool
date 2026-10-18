@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171a24">
+  <meta name="description" content="A private, local-first personal productivity app.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <title>Daylight — Personal Productivity</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f5f8; --panel: #fff; --ink: #202333; --muted: #74798b;
+      --line: #e7e9ef; --accent: #6258e8; --accent-soft: #eeecff;
+      --green: #24876b; --red: #c84b5b; --shadow: 0 8px 28px rgba(26,30,55,.06);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .app { max-width: 1080px; margin: 0 auto; padding: 24px 18px calc(92px + env(safe-area-inset-bottom)); }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:24px; }
+    .brand { display:flex; gap:11px; align-items:center; }
+    .logo { width:42px; height:42px; border-radius:14px; display:grid; place-items:center; color:white; background:var(--accent); font-size:22px; font-weight:800; }
+    h1 { font-size:22px; margin:0; letter-spacing:-.6px; }
+    .sub { color:var(--muted); font-size:13px; margin-top:4px; }
+    .privacy { border:1px solid var(--line); background:var(--panel); padding:9px 12px; border-radius:999px; font-size:12px; color:var(--green); white-space:nowrap; }
+    .welcome { margin: 10px 0 20px; }
+    .welcome h2 { font-size:clamp(25px,5vw,34px); letter-spacing:-1px; margin:0 0 6px; }
+    .welcome p { margin:0; color:var(--muted); }
+    .grid { display:grid; grid-template-columns: 1.1fr .9fr; gap:16px; align-items:start; }
+    .stack { display:grid; gap:16px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); min-width:0; }
+    .card-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; }
+    h3 { margin:0; font-size:17px; letter-spacing:-.3px; }
+    .muted { color:var(--muted); font-size:13px; }
+    .btn { border:0; border-radius:12px; padding:11px 14px; font-weight:650; background:var(--accent); color:white; }
+    .btn.secondary { background:var(--accent-soft); color:var(--accent); }
+    .btn.ghost { background:transparent; color:var(--muted); border:1px solid var(--line); }
+    .btn.small { padding:8px 10px; font-size:12px; }
+    .btn.danger { background:#fff0f1; color:var(--red); }
+    .field { width:100%; border:1px solid var(--line); border-radius:12px; padding:12px 13px; color:var(--ink); background:#fff; outline:none; }
+    .field:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+    .form-row { display:flex; gap:8px; }
+    .form-row > * { min-width:0; }
+    .task-form { display:grid; grid-template-columns:1fr auto; gap:8px; margin-bottom:12px; }
+    .task-options { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
+    .task-list { display:grid; gap:9px; }
+    .task { display:flex; align-items:flex-start; gap:10px; padding:12px; border:1px solid var(--line); border-radius:14px; }
+    .task input[type=checkbox], .habit input[type=checkbox] { width:19px; height:19px; accent-color:var(--accent); flex-shrink:0; margin-top:2px; }
+    .task-main { flex:1; min-width:0; }
+    .task-title { font-size:14px; font-weight:650; overflow-wrap:anywhere; }
+    .task.done .task-title { text-decoration:line-through; color:var(--muted); }
+    .task-meta { display:flex; gap:7px; flex-wrap:wrap; margin-top:6px; color:var(--muted); font-size:11px; }
+    .pill { border-radius:999px; padding:4px 7px; background:#f0f1f5; color:#656b7e; }
+    .pill.high { background:#fff0f1; color:var(--red); }
+    .task-actions { display:flex; gap:4px; }
+    .icon-btn { border:0; background:transparent; color:var(--muted); padding:4px 6px; border-radius:8px; }
+    .icon-btn:hover { background:var(--bg); }
+    .progress-wrap { height:8px; background:#eeeff4; border-radius:99px; overflow:hidden; margin:13px 0 7px; }
+    .progress { height:100%; width:0; background:var(--accent); border-radius:99px; transition:width .2s; }
+    .habit-list { display:grid; gap:10px; }
+    .habit { display:flex; align-items:center; gap:10px; padding:11px 12px; border:1px solid var(--line); border-radius:13px; }
+    .habit .habit-name { flex:1; font-size:14px; font-weight:600; }
+    .habit .streak { font-size:11px; color:var(--muted); white-space:nowrap; }
+    .empty { color:var(--muted); font-size:13px; text-align:center; padding:22px 10px; }
+    .timer-card { text-align:center; }
+    .timer-ring { width:190px; height:190px; border-radius:50%; margin:12px auto 18px; display:grid; place-items:center; background:conic-gradient(var(--accent) var(--angle, 0deg), #eeeff5 0); position:relative; }
+    .timer-ring::before { content:""; position:absolute; inset:9px; border-radius:50%; background:var(--panel); }
+    .timer-inner { position:relative; z-index:1; }
+    .timer-time { font-size:43px; font-weight:750; letter-spacing:-2px; font-variant-numeric:tabular-nums; }
+    .timer-label { color:var(--muted); font-size:12px; margin-top:3px; }
+    .timer-controls { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+    .timer-settings { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:15px; color:var(--muted); font-size:12px; }
+    .timer-settings input { width:64px; text-align:center; padding:7px; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+    .stat { padding:13px; border-radius:14px; background:#f7f7fb; }
+    .stat-num { font-size:23px; font-weight:750; letter-spacing:-.7px; }
+    .stat-label { font-size:11px; color:var(--muted); margin-top:4px; }
+    .bottom-nav { display:none; }
+    .footer { text-align:center; color:var(--muted); font-size:11px; margin-top:20px; line-height:1.6; }
+    .toast { position:fixed; bottom:calc(20px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); background:#202333; color:white; padding:11px 15px; border-radius:12px; font-size:13px; box-shadow:var(--shadow); z-index:10; max-width:90vw; display:none; }
+    .filter-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:13px; }
+    .filter-btn { border:1px solid var(--line); background:white; color:var(--muted); padding:7px 10px; border-radius:999px; font-size:12px; }
+    .filter-btn.active { background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650; }
+    .section-anchor { scroll-margin-top:16px; }
+    @media (max-width:760px) {
+      .app { padding:18px 13px calc(90px + env(safe-area-inset-bottom)); }
+      header { margin-bottom:22px; }
+      .grid { grid-template-columns:1fr; }
+      .card { padding:17px; border-radius:18px; }
+      .privacy { font-size:0; padding:10px; }
+      .privacy::after { content:"● Private"; font-size:12px; }
+      .timer-ring { width:175px; height:175px; }
+      .bottom-nav { position:fixed; display:flex; z-index:5; bottom:0; left:0; right:0; justify-content:space-around; padding:10px 6px calc(10px + env(safe-area-inset-bottom)); background:rgba(255,255,255,.94); backdrop-filter:blur(18px); border-top:1px solid var(--line); }
+      .bottom-nav a { text-decoration:none; color:var(--muted); font-size:10px; text-align:center; min-width:54px; }
+      .bottom-nav span { display:block; font-size:19px; margin-bottom:3px; }
+      .task-options { grid-template-columns:1fr 1fr; }
+      .stats { gap:6px; }
+      .stat { padding:11px 8px; }
+      .stat-num { font-size:20px; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { color-scheme:dark; --bg:#12141b; --panel:#1c1f29; --ink:#f1f2f8; --muted:#a0a5b5; --line:#303442; --accent:#a39bff; --accent-soft:#302d50; --green:#78d7b4; --red:#ff8997; --shadow:0 8px 28px rgba(0,0,0,.12); }
+      .field,.filter-btn { background:#222531; color:var(--ink); }
+      .pill { background:#303442; color:#c0c4d2; }
+      .pill.high { background:#46252d; color:#ff9eaa; }
+      .stat { background:#252834; }
+      .progress-wrap { background:#303442; }
+      .timer-ring { background:conic-gradient(var(--accent) var(--angle, 0deg), #303442 0); }
+      .timer-ring::before { background:var(--panel); }
+      .bottom-nav { background:rgba(28,31,41,.94); }
+      .btn.danger { background:#46252d; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="brand">
+        <div class="logo">D</div>
+        <div><h1>Daylight</h1><div class="sub">Your day, with intention.</div></div>
+      </div>
+      <div class="privacy" title="Your app data stays in this browser on this device">● Stored on this device</div>
+    </header>
+
+    <section class="welcome">
+      <h2 id="greeting">Make today count.</h2>
+      <p id="dateLine"></p>
+    </section>
+
+    <section class="card" style="margin-bottom:16px">
+      <div class="card-head">
+        <div><h3>Today's progress</h3><div class="muted" id="progressCaption">A little progress adds up.</div></div>
+        <strong id="progressPercent">0%</strong>
+      </div>
+      <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+      <div class="stats">
+        <div class="stat"><div class="stat-num" id="tasksStat">0/0</div><div class="stat-label">Tasks completed</div></div>
+        <div class="stat"><div class="stat-num" id="habitsStat">0/0</div><div class="stat-label">Habits today</div></div>
+        <div class="stat"><div class="stat-num" id="focusStat">0m</div><div class="stat-label">Focus today</div></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="stack">
+        <section class="card section-anchor" id="tasksSection">
+          <div class="card-head"><div><h3>Tasks</h3><div class="muted">Choose what matters next.</div></div><span class="pill" id="taskCount">0 tasks</span></div>
+          <form id="taskForm">
+            <div class="task-form">
+              <input class="field" id="taskInput" maxlength="140" placeholder="Add a task…" required aria-label="Task title">
+              <button class="btn" type="submit">Add</button>
+            </div>
+            <div class="task-options">
+              <select class="field" id="taskPriority" aria-label="Priority"><option value="Normal">Normal priority</option><option value="High">High priority</option><option value="Low">Low priority</option></select>
+              <input class="field" type="date" id="taskDate" aria-label="Due date">
+            </div>
+          </form>
+          <div class="filter-row">
+            <button class="filter-btn active" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="today">Today</button>
+            <button class="filter-btn" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="done">Completed</button>
+          </div>
+          <div class="task-list" id="taskList"></div>
+        </section>
+
+        <section class="card section-anchor" id="habitsSection">
+          <div class="card-head"><div><h3>Habits</h3><div class="muted">Small actions, repeated.</div></div><span class="pill" id="habitCount">0 habits</span></div>
+          <form class="form-row" id="habitForm" style="margin-bottom:14px">
+            <input class="field" id="habitInput" maxlength="80" placeholder="New habit…" required aria-label="Habit name">
+            <button class="btn" type="submit">Add</button>
+          </form>
+          <div class="habit-list" id="habitList"></div>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="card timer-card section-anchor" id="focusSection">
+          <div class="card-head"><div style="text-align:left"><h3>Focus session</h3><div class="muted">One thing at a time.</div></div><span class="pill" id="sessionCount">0 sessions</span></div>
+          <div class="timer-ring" id="timerRing" style="--angle:0deg">
+            <div class="timer-inner"><div class="timer-time" id="timerTime">25:00</div><div class="timer-label" id="timerLabel">Ready to focus</div></div>
+          </div>
+          <div class="timer-controls">
+            <button class="btn" id="startPause">Start focus</button>
+            <button class="btn secondary" id="resetTimer">Reset</button>
+            <button class="btn ghost" id="finishTimer">Finish</button>
+          </div>
+          <div class="timer-settings">
+            <label for="focusMinutes">Focus</label><input class="field" id="focusMinutes" type="number" min="1" max="120" value="25" aria-label="Focus minutes">
+            <span>minutes</span>
+          </div>
+          <p class="muted" style="margin:13px 0 0">Keep this page open for the most reliable timer. iOS may suspend background browser activity.</p>
+        </section>
+
+        <section class="card">
+          <div class="card-head"><div><h3>Quick review</h3><div class="muted">A simple check-in for today.</div></div></div>
+          <label class="muted" for="reflection">What went well? What should I improve?</label>
+          <textarea class="field" id="reflection" rows="4" maxlength="1200" placeholder="Write a few lines for yourself…" style="resize:vertical;margin-top:8px"></textarea>
+          <div class="muted" style="margin-top:7px">Saved automatically on this device.</div>
+        </section>
+
+        <section class="card">
+          <div class="card-head"><div><h3>Your data</h3><div class="muted">You control your information.</div></div></div>
+          <div style="display:grid;gap:9px">
+            <button class="btn secondary" id="exportBtn">Export backup (JSON)</button>
+            <label class="btn ghost" for="importFile" style="text-align:center">Import backup (JSON)</label>
+            <input type="file" id="importFile" accept="application/json,.json" hidden>
+            <button class="btn danger" id="clearBtn">Delete all app data</button>
+          </div>
+          <p class="muted" style="line-height:1.5;margin-bottom:0">This data is stored in this browser profile only. It does not automatically sync to your iPhone or another browser.</p>
+        </section>
+      </div>
+    </div>
+    <div class="footer">Daylight · Private by default<br>Local browser storage is not encrypted. Export backups somewhere safe.</div>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a href="#tasksSection"><span>✓</span>Tasks</a>
+    <a href="#habitsSection"><span>↗</span>Habits</a>
+    <a href="#focusSection"><span>◷</span>Focus</a>
+    <a href="#tasksSection" id="navToday"><span>⌂</span>Today</a>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  "use strict";
+  const KEY = "daylight-pwa-data-v1";
+  const today = () => new Date().toLocaleDateString("en-CA");
+  const newId = () => (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+  const defaultData = () => ({ tasks: [], habits: [], sessions: [], reflections: {}, settings: { focusMinutes: 25 } });
+  let data = loadData();
+  let filter = "active";
+  let remaining = Math.max(1, Number(data.settings.focusMinutes) || 25) * 60;
+  let running = false;
+  let endAt = null;
+  let timerHandle = null;
+  let sessionStartedAt = null;
+  let sessionElapsedBeforePause = 0;
+  let toastHandle;
+
+  function loadData() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return defaultData();
+      const parsed = JSON.parse(raw);
+      return {
+        tasks: Array.isArray(parsed.tasks) ? parsed.tasks : [],
+        habits: Array.isArray(parsed.habits) ? parsed.habits : [],
+        sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
+        reflections: parsed.reflections && typeof parsed.reflections === "object" ? parsed.reflections : {},
+        settings: { focusMinutes: Number(parsed.settings?.focusMinutes) || 25 }
+      };
+    } catch (e) { return defaultData(); }
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(data)); }
+    catch (e) { showToast("Could not save. Export a backup and free browser storage."); }
+  }
+  function showToast(msg) {
+    const el = document.getElementById("toast");
+    el.textContent = msg; el.style.display = "block";
+    clearTimeout(toastHandle); toastHandle = setTimeout(() => el.style.display = "none", 2800);
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  }
+  function formatDate(d) {
+    if (!d) return "No due date";
+    const date = new Date(d + "T12:00:00");
+    return date.toLocaleDateString(undefined, { month:"short", day:"numeric" });
+  }
+  function todayTasks() { return data.tasks.filter(t => !t.due || t.due === today()); }
+  function completedHabits() { return data.habits.filter(h => (h.completedDates || []).includes(today())).length; }
+  function todayFocusMinutes() {
+    return data.sessions.filter(s => s.date === today()).reduce((sum,s) => sum + (Number(s.minutes)||0), 0);
+  }
+  function renderHeader() {
+    const now = new Date();
+    const hour = now.getHours();
+    document.getElementById("greeting").textContent = hour < 12 ? "Good morning." : hour < 17 ? "Good afternoon." : "Good evening.";
+    document.getElementById("dateLine").textContent = now.toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric", year:"numeric" });
+  }
+  function renderProgress() {
+    const tasks = todayTasks();
+    const taskDone = tasks.filter(t => t.done).length;
+    const habitDone = completedHabits();
+    const total = tasks.length + data.habits.length;
+    const done = taskDone + habitDone;
+    const pct = total ? Math.round(done / total * 100) : 0;
+    document.getElementById("progressPercent").textContent = pct + "%";
+    document.getElementById("progressBar").style.width = pct + "%";
+    document.getElementById("progressCaption").textContent = total ? (pct === 100 ? "Everything planned is complete." : "Keep going, one step at a time.") : "Add a task or habit to get started.";
+    document.getElementById("tasksStat").textContent = `${taskDone}/${tasks.length}`;
+    document.getElementById("habitsStat").textContent = `${habitDone}/${data.habits.length}`;
+    const mins = todayFocusMinutes();
+    document.getElementById("focusStat").textContent = mins >= 60 ? `${Math.floor(mins/60)}h ${mins%60}m` : `${mins}m`;
+  }
+  function renderTasks() {
+    const list = document.getElementById("taskList");
+    let tasks = [...data.tasks];
+    if (filter === "active") tasks = tasks.filter(t => !t.done);
+    if (filter === "today") tasks = tasks.filter(t => t.due === today() && !t.done);
+    if (filter === "done") tasks = tasks.filter(t => t.done);
+    tasks.sort((a,b) => Number(a.done)-Number(b.done) || (a.due || "9999").localeCompare(b.due || "9999") || (a.createdAt || 0)-(b.createdAt || 0));
+    document.getElementById("taskCount").textContent = `${data.tasks.filter(t=>!t.done).length} active`;
+    document.querySelectorAll("[data-filter]").forEach(b => b.classList.toggle("active", b.dataset.filter === filter));
+    if (!tasks.length) { list.innerHTML = '<div class="empty">Nothing here yet. Add a task above.</div>'; return; }
+    list.innerHTML = tasks.map(t => `
+      <div class="task ${t.done ? "done" : ""}">
+        <input type="checkbox" data-complete="${esc(t.id)}" ${t.done ? "checked" : ""} aria-label="Complete ${esc(t.title)}">
+        <div class="task-main"><div class="task-title">${esc(t.title)}</div><div class="task-meta">
+          <span class="pill ${t.priority === "High" ? "high" : ""}">${esc(t.priority || "Normal")}</span>
+          ${t.due ? `<span>${t.due < today() && !t.done ? "Overdue · " : "Due · "}${formatDate(t.due)}</span>` : ""}
+        </div></div>
+        <div class="task-actions"><button class="icon-btn" data-edit="${esc(t.id)}" aria-label="Edit task">✎</button><button class="icon-btn" data-delete="${esc(t.id)}" aria-label="Delete task">×</button></div>
+      </div>`).join("");
+  }
+  function habitStreak(h) {
+    const set = new Set(h.completedDates || []);
+    let d = new Date(); let count = 0;
+    while (set.has(d.toLocaleDateString("en-CA"))) { count++; d.setDate(d.getDate()-1); }
+    if (!count) { d = new Date(); d.setDate(d.getDate()-1); while (set.has(d.toLocaleDateString("en-CA"))) { count++; d.setDate(d.getDate()-1); } }
+    return count;
+  }
+  function renderHabits() {
+    const list = document.getElementById("habitList");
+    document.getElementById("habitCount").textContent = `${data.habits.length} habits`;
+    if (!data.habits.length) { list.innerHTML = '<div class="empty">Add one small habit you want to repeat.</div>'; return; }
+    list.innerHTML = data.habits.map(h => {
+      const done = (h.completedDates || []).includes(today());
+      return `<div class="habit"><input type="checkbox" data-habit="${esc(h.id)}" ${done ? "checked" : ""} aria-label="Mark ${esc(h.name)} complete"><div class="habit-name">${esc(h.name)}</div><span class="streak">🔥 ${habitStreak(h)} day${habitStreak(h)===1?"":"s"}</span><button class="icon-btn" data-habit-delete="${esc(h.id)}" aria-label="Delete habit">×</button></div>`;
+    }).join("");
+  }
+  function renderTimer() {
+    const mins = Math.floor(remaining / 60), secs = remaining % 60;
+    document.getElementById("timerTime").textContent = `${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
+    document.getElementById("timerLabel").textContent = running ? "Stay with this task" : "Ready to focus";
+    const total = Math.max(1, Number(document.getElementById("focusMinutes").value) || 25) * 60;
+    document.getElementById("timerRing").style.setProperty("--angle", `${Math.max(0, Math.min(1, 1 - remaining / total)) * 360}deg`);
+    document.getElementById("startPause").textContent = running ? "Pause" : "Start focus";
+    document.getElementById("sessionCount").textContent = `${data.sessions.length} sessions`;
+  }
+  function renderReflection() {
+    document.getElementById("reflection").value = data.reflections[today()] || "";
+  }
+  function renderAll() {
+    renderHeader(); renderProgress(); renderTasks(); renderHabits(); renderTimer(); renderReflection();
+  }
+  document.getElementById("taskForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const input = document.getElementById("taskInput");
+    const title = input.value.trim();
+    if (!title) return;
+    data.tasks.push({ id:newId(), title, priority:document.getElementById("taskPriority").value, due:document.getElementById("taskDate").value || "", done:false, createdAt:Date.now() });
+    input.value = ""; save(); renderAll(); showToast("Task added.");
+  });
+  document.getElementById("taskDate").value = today();
+  document.querySelectorAll("[data-filter]").forEach(b => b.addEventListener("click", () => { filter = b.dataset.filter; renderTasks(); }));
+  document.getElementById("taskList").addEventListener("change", e => {
+    const id = e.target.dataset.complete; if (!id) return;
+    const t = data.tasks.find(x => x.id === id); if (t) t.done = e.target.checked;
+    save(); renderAll();
+  });
+  document.getElementById("taskList").addEventListener("click", e => {
+    const edit = e.target.closest("[data-edit]")?.dataset.edit;
+    const del = e.target.closest("[data-delete]")?.dataset.delete;
+    if (edit) {
+      const t = data.tasks.find(x=>x.id===edit); if (!t) return;
+      const title = prompt("Edit task title:", t.title);
+      if (title === null) return;
+      if (!title.trim()) { showToast("Task title cannot be empty."); return; }
+      t.title = title.trim(); save(); renderAll();
+    }
+    if (del && confirm("Delete this task?")) { data.tasks = data.tasks.filter(x=>x.id!==del); save(); renderAll(); }
+  });
+  document.getElementById("habitForm").addEventListener("submit", e => {
+    e.preventDefault(); const input = document.getElementById("habitInput"); const name = input.value.trim();
+    if (!name) return;
+    if (data.habits.some(h=>h.name.toLowerCase()===name.toLowerCase())) { showToast("That habit already exists."); return; }
+    data.habits.push({ id:newId(), name, completedDates:[], createdAt:Date.now() }); input.value=""; save(); renderAll(); showToast("Habit added.");
+  });
+  document.getElementById("habitList").addEventListener("change", e => {
+    const id = e.target.dataset.habit; if (!id) return;
+    const h = data.habits.find(x=>x.id===id); if (!h) return;
+    h.completedDates = h.completedDates || [];
+    h.completedDates = e.target.checked ? [...new Set([...h.completedDates,today()])] : h.completedDates.filter(d=>d!==today());
+    save(); renderAll();
+  });
+  document.getElementById("habitList").addEventListener("click", e => {
+    const id = e.target.closest("[data-habit-delete]")?.dataset.habitDelete;
+    if (id && confirm("Delete this habit and its history?")) { data.habits=data.habits.filter(h=>h.id!==id); save(); renderAll(); }
+  });
+  document.getElementById("focusMinutes").value = Math.max(1, Math.min(120, Number(data.settings.focusMinutes) || 25));
+  document.getElementById("focusMinutes").addEventListener("change", e => {
+    const n = Math.max(1, Math.min(120, Number(e.target.value) || 25));
+    e.target.value = n; data.settings.focusMinutes=n; save();
+    if (!running) remaining=n*60;
+    renderTimer();
+  });
+  function stopTicker() { if (timerHandle) clearInterval(timerHandle); timerHandle = null; }
+  function tick() {
+    if (!running || endAt === null) return;
+    remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+    if (remaining <= 0) {
+      running = false; endAt = null; stopTicker();
+      const minutes = Math.max(1, Math.round((Number(document.getElementById("focusMinutes").value)||25)));
+      data.sessions.push({ id:newId(), date:today(), minutes, completedAt:new Date().toISOString() });
+      save(); remaining = minutes * 60; renderAll(); showToast("Focus session complete — nice work!");
+      if ("vibrate" in navigator) navigator.vibrate([150,80,150]);
+      return;
+    }
+    renderTimer();
+  }
+  document.getElementById("startPause").addEventListener("click", () => {
+    if (running) {
+      running=false; endAt=null; stopTicker(); renderTimer(); return;
+    }
+    if (remaining <= 0) remaining = Math.max(1, Number(document.getElementById("focusMinutes").value)||25)*60;
+    running=true; endAt=Date.now()+remaining*1000; timerHandle=setInterval(tick,250); renderTimer();
+  });
+  document.getElementById("resetTimer").addEventListener("click", () => {
+    running=false; endAt=null; stopTicker(); remaining=Math.max(1,Number(document.getElementById("focusMinutes").value)||25)*60; renderTimer();
+  });
+  document.getElementById("finishTimer").addEventListener("click", () => {
+    if (!running && remaining === Math.max(1,Number(document.getElementById("focusMinutes").value)||25)*60) { showToast("Start a session first."); return; }
+    const total = Math.max(1, Number(document.getElementById("focusMinutes").value)||25);
+    const elapsed = Math.max(0, Math.floor((total*60-remaining)/60));
+    running=false; endAt=null; stopTicker();
+    if (elapsed > 0) data.sessions.push({id:newId(),date:today(),minutes:elapsed,completedAt:new Date().toISOString(),partial:true});
+    save(); remaining=total*60; renderAll(); showToast(elapsed ? `Saved ${elapsed} focus minutes.` : "Session ended.");
+  });
+  document.getElementById("reflection").addEventListener("input", e => {
+    data.reflections[today()] = e.target.value; save();
+  });
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify({version:1, exportedAt:new Date().toISOString(), data}, null, 2)], {type:"application/json"});
+    const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href=url; a.download=`daylight-backup-${today()}.json`; a.click(); URL.revokeObjectURL(url);
+    showToast("Backup exported. Store it somewhere safe.");
+  });
+  document.getElementById("importFile").addEventListener("change", async e => {
+    const file=e.target.files?.[0]; if (!file) return;
+    try {
+      const parsed=JSON.parse(await file.text()); const incoming=parsed.data || parsed;
+      if (!incoming || !Array.isArray(incoming.tasks) || !Array.isArray(incoming.habits) || !Array.isArray(incoming.sessions)) throw new Error("Invalid backup structure");
+      if (!confirm("Import this backup and replace the data currently in this browser? Export your current data first if you need it.")) { e.target.value=""; return; }
+      data = { tasks:incoming.tasks, habits:incoming.habits, sessions:incoming.sessions, reflections:incoming.reflections && typeof incoming.reflections==="object" ? incoming.reflections : {}, settings:{focusMinutes:Number(incoming.settings?.focusMinutes)||25} };
+      save(); remaining=data.settings.focusMinutes*60; renderAll(); showToast("Backup imported.");
+    } catch (err) { showToast("That file is not a valid Daylight backup."); }
+    e.target.value="";
+  });
+  document.getElementById("clearBtn").addEventListener("click", () => {
+    if (!confirm("Permanently delete all Daylight tasks, habits, focus history and reflections from this browser? Export a backup first if needed.")) return;
+    data=defaultData(); save(); running=false; endAt=null; stopTicker(); remaining=25*60; document.getElementById("focusMinutes").value=25; renderAll(); showToast("App data deleted from this browser.");
+  });
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+  }
+  renderAll();
+})();
+</script>
+</body>
+</html>
