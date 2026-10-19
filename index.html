@@ -197,6 +197,58 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
       .bottom-nav{padding-left:4px;padding-right:4px}.bottom-nav a .nav-label{font-size:9px}
     }
   </style>
+<style id="apex-v4">
+/* APEX v4 — final layer: nav, hero, home layout, polish. Loaded last so it wins over legacy rules. */
+:root{--glass:linear-gradient(145deg,rgba(14,30,50,.74),rgba(4,12,22,.88))}
+.card{background:var(--glass)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:#22405a!important;transition:transform .2s,border-color .2s,box-shadow .2s}
+@media(hover:hover){.card:hover{border-color:#37607f!important;box-shadow:0 14px 40px #0006,0 0 0 1px #ff17371c}}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes sheen{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.page-view.active{animation:pageIn .28s cubic-bezier(.2,.7,.2,1)}
+.page-heading h2{background:linear-gradient(90deg,#fff,#a9c9e6);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* sidebar: one link per page, single active state */
+.side-nav a{position:relative;cursor:pointer;user-select:none}
+.side-nav a.active{background:linear-gradient(90deg,#3a1220,#111d2a)!important;border-color:#7a2538!important;box-shadow:inset 3px 0 #ff1737,0 0 24px #ff17371a!important;color:#fff!important}
+.side-nav a:not(.active):hover{background:#0c1b2b;border-color:#1f3a52}
+.kbd{margin-left:auto;font:600 10px ui-monospace,Menlo,Consolas,monospace;font-style:normal;color:#6f90ab;border:1px solid #284258;border-radius:5px;padding:2px 6px}
+/* quick add (Todoist/Things style) */
+.quick-add{display:flex;align-items:center;gap:10px;margin:0 0 16px;padding:7px 8px 7px 16px;border:1px solid #2a4963;border-radius:14px;background:rgba(6,17,31,.88);transition:border-color .2s,box-shadow .2s}
+.quick-add:focus-within{border-color:#ff3651;box-shadow:0 0 0 3px #ff17371f,0 10px 30px #0006}
+.qa-plus{color:#ff4259;font-size:24px;font-weight:300;line-height:1}
+.qa-input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#f4f8ff;font-size:15px;padding:9px 0}
+.qa-input::placeholder{color:#6d8aa3}
+/* progress ring (Apple Fitness style) */
+#progressSection .progress-wrap{display:none}
+#progressSection .card-head{align-items:center}
+.ring{--pct:0;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;position:relative;flex-shrink:0;background:conic-gradient(#ff1737 calc(var(--pct)*1%),#10304f 0);box-shadow:0 0 26px #ff17372e;transition:background .4s}
+.ring:before{content:"";position:absolute;inset:7px;border-radius:50%;background:#06111f}
+.ring b{position:relative;font-size:16px;font-variant-numeric:tabular-nums}
+/* hero polish */
+.hero-banner:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.07) 50%,transparent 58%);animation:sheen 8s ease-in-out infinite}
+/* checkboxes + rows */
+input[type=checkbox]{transition:transform .15s}input[type=checkbox]:active{transform:scale(.8)}
+.task,.mini-task,.habit{transition:background .2s,border-color .2s,transform .15s}
+@media(hover:hover){.task:hover,.mini-task:hover,.habit:hover{border-color:#2f5675;transform:translateX(2px)}}
+.fab{display:none}
+/* desktop home layout */
+@media(min-width:821px){.home-grid{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr)!important;gap:16px!important;align-items:start!important}}
+/* mobile: clean hero, floating nav, FAB */
+@media(max-width:820px){
+.hero-banner{display:block!important;min-height:0!important;padding:20px 16px 16px!important;background:linear-gradient(180deg,rgba(3,10,20,.5),rgba(3,10,20,.92)),url('./race-hero.png') 28% center/cover no-repeat!important}
+.hero-copy{max-width:100%!important}.hero-quote{display:none!important}
+.hero-date{position:static!important;right:auto!important;bottom:auto!important;margin-top:14px;width:fit-content;max-width:100%}
+.hero-date small{display:block!important}
+.bottom-nav{left:10px!important;right:10px!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;padding:7px 6px!important;border:1px solid #2a4963!important;border-radius:22px!important;background:rgba(5,13,24,.82)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 12px 34px #000a!important}
+.bottom-nav a{position:relative;cursor:pointer;border-radius:14px;padding:6px 0!important}
+.bottom-nav a.active{background:#1a1520}
+.bottom-nav a.active:before{content:"";position:absolute;top:0;left:30%;right:30%;height:2px;border-radius:2px;background:#ff1737;box-shadow:0 0 10px #ff1737}
+.fab{display:grid;place-items:center;position:fixed;right:18px;bottom:calc(86px + env(safe-area-inset-bottom));z-index:9;width:54px;height:54px;border:0;border-radius:50%;font-size:30px;font-weight:300;color:#fff;background:linear-gradient(135deg,#ff1737,#c4001f);box-shadow:0 10px 26px #ff173755}
+.fab:active{transform:scale(.92)}
+.app{padding-bottom:calc(120px + env(safe-area-inset-bottom))!important}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+</style>
 </head>
 <body>
 <div class="shell">
@@ -205,15 +257,13 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
 <img alt="" class="side-logo" src="./icon.svg"/>
 <span><strong>APEX</strong><small>PERSONAL PRODUCTIVITY</small></span>
 </a>
-<nav class="side-nav">
-<a aria-label="Home" class="active" href="#top"><span>⌂</span>Home</a>
-<a href="#tasksSection"><span>☷</span>Tasks</a>
-<a href="#habitsSection"><span>♧</span>Habits</a>
-<a href="#focusSection"><span>◴</span>Focus Timer</a>
-<a href="#weekSection"><span>▦</span>Weekly Board</a>
-<a href="#reflectionSection"><span>▤</span>Reflections</a>
-<a href="#progressSection"><span>▥</span>Stats</a>
-<a href="#dataSection"><span>↥</span>Backup &amp; Export</a>
+<nav class="side-nav" aria-label="Pages">
+<a data-go="home" role="button" tabindex="0"><span>⌂</span>Home<em class="kbd">1</em></a>
+<a data-go="tasks" role="button" tabindex="0"><span>☷</span>Tasks<em class="kbd">2</em></a>
+<a data-go="habits" role="button" tabindex="0"><span>♧</span>Habits<em class="kbd">3</em></a>
+<a data-go="focus" role="button" tabindex="0"><span>◴</span>Focus<em class="kbd">4</em></a>
+<a data-go="reflection" role="button" tabindex="0"><span>▤</span>Review<em class="kbd">5</em></a>
+<a data-go="settings" role="button" tabindex="0"><span>↥</span>Settings &amp; Data<em class="kbd">6</em></a>
 </nav>
 <div class="side-driver">
 <div class="driver-number">33</div>
@@ -289,7 +339,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
 </section><section class="card progress-card" id="progressSection" style="margin-bottom:16px">
 <div class="card-head">
 <div><h3>Today's progress</h3><div class="muted" id="progressCaption">A little progress adds up.</div></div>
-<strong id="progressPercent">0%</strong>
+<div class="ring" id="progressRing" style="--pct:0"><b>0%</b></div><strong id="progressPercent" hidden>0%</strong>
 </div>
 <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
 <div class="stats">
@@ -332,12 +382,13 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
 <p class="muted" style="line-height:1.5;margin-bottom:0">This data is stored in this browser profile only. It does not automatically sync to your iPhone or another browser.</p>
 </section></div><div class="footer">APEX · Private by default<br/>Local browser storage is not encrypted. Export backups somewhere safe.</div></main>
 <nav aria-label="Main navigation" class="bottom-nav">
-<a href="#weekSection"><span>▦</span>Week</a>
-<a href="#tasksSection"><span>✓</span>Tasks</a>
-<a href="#habitsSection"><span>↗</span>Habits</a>
-<a href="#focusSection"><span>◷</span>Focus</a>
-<a href="#tasksSection" id="navToday"><span>⌂</span>Today</a>
+<a data-go="home" role="button" tabindex="0"><span aria-hidden="true">⌂</span><span class="nav-label">Home</span></a>
+<a data-go="tasks" role="button" tabindex="0"><span aria-hidden="true">☷</span><span class="nav-label">Tasks</span></a>
+<a data-go="habits" role="button" tabindex="0"><span aria-hidden="true">♧</span><span class="nav-label">Habits</span></a>
+<a data-go="focus" role="button" tabindex="0"><span aria-hidden="true">◷</span><span class="nav-label">Focus</span></a>
+<a data-go="reflection" role="button" tabindex="0"><span aria-hidden="true">▤</span><span class="nav-label">Review</span></a>
 </nav>
+<button class="fab" data-action="new-task" type="button" aria-label="New task">+</button>
 <div aria-live="polite" class="toast" id="toast" role="status"></div>
 </div>
 <script>
@@ -412,6 +463,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     const pct = total ? Math.round(done / total * 100) : 0;
     document.getElementById("progressPercent").textContent = pct + "%";
     document.getElementById("progressBar").style.width = pct + "%";
+    { const ring = document.getElementById("progressRing"); if (ring) { ring.style.setProperty("--pct", pct); ring.querySelector("b").textContent = pct + "%"; } }
     document.getElementById("progressCaption").textContent = total ? (pct === 100 ? "Everything planned is complete." : "Keep going, one step at a time.") : "Add a task or habit to get started.";
     document.getElementById("tasksStat").textContent = `${taskDone}/${tasks.length}`;
     document.getElementById("habitsStat").textContent = `${habitDone}/${data.habits.length}`;
@@ -741,7 +793,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     const homeRight=document.createElement("div");homeRight.className="page-stack";
     const quick=document.createElement("section");quick.className="card";quick.innerHTML='<div class="card-head"><div><h3>Quick actions</h3><div class="muted">Keep the momentum.</div></div></div><div class="quick-grid"><button class="quick-action" data-action="new-task"><span class="quick-icon">✓</span><span>New task</span></button><button class="quick-action" data-go="habits"><span class="quick-icon">▥</span><span>Habits</span></button><button class="quick-action" data-go="focus"><span class="quick-icon">◴</span><span>Start focus</span></button><button class="quick-action" data-go="reflection"><span class="quick-icon">▤</span><span>Daily debrief</span></button></div>';
     const privacy=document.createElement("div");privacy.className="settings-note";privacy.textContent="PRIVATE BY DEFAULT · Stored locally in this browser. It does not sync automatically between your Windows laptop and iPhone.";
-    homeGrid.append(homeTasks,homeRight);homeRight.append(progress,quick,privacy);home.append(hero,homeGrid);
+    const homeLeft=document.createElement("div");homeLeft.className="page-stack";homeLeft.append(homeTasks,quick);homeGrid.append(homeLeft,homeRight);homeRight.append(progress,privacy);const qa=document.createElement("form");qa.className="quick-add";qa.autocomplete="off";qa.innerHTML='<span class="qa-plus" aria-hidden="true">+</span><input class="qa-input" id="quickAddInput" maxlength="140" placeholder="Add a task for today…  (press N)" aria-label="Quick add task for today"><button class="btn small" type="submit">Add</button>';qa.addEventListener("submit",e=>{e.preventDefault();const i=qa.querySelector("input");const title=i.value.trim();if(!title)return;data.tasks.push({id:newId(),title,priority:"Normal",due:today(),done:false,createdAt:Date.now()});i.value="";save();captureSnapshot();renderAll();renderHomeTasks();showToast("Task added for today.");});home.append(hero,qa,homeGrid);
     taskPage.append(tasks,week);focusPage.append(focus);const focusHistory=document.createElement("section");focusHistory.className="card";focusHistory.id="focusHistoryCard";focusHistory.innerHTML='<div class="card-head"><div><h3>Stint history</h3><div class="muted">Completed and interrupted focus sessions.</div></div></div><div class="history-list" id="focusHistoryList"></div>';focusPage.append(focusHistory);habitPage.append(habits);
     const analytics=document.createElement("section");analytics.className="card";analytics.id="analyticsSection";analytics.innerHTML='<div class="card-head"><div><h3>Performance analytics</h3><div class="muted">Daily snapshots are recorded as you use APEX. No history is invented for earlier dates.</div></div><div class="range-control"><button class="filter-btn active" data-range="7">7D</button><button class="filter-btn" data-range="30">30D</button><button class="filter-btn" data-range="90">90D</button></div></div><div class="analytics-grid" id="analyticsStats"></div><div class="chart-card"><div class="chart-title">Daily focus time</div><div class="bar-chart" id="focusChart"></div></div><div class="chart-card" style="margin-top:10px"><div class="chart-title">Task completion</div><div class="bar-chart" id="taskChart"></div></div>';
     const checkin=document.createElement("section");checkin.className="card";checkin.id="checkinCard";checkin.innerHTML=`<div class="card-head"><div><h3>Daily check-in</h3><div class="muted">No perfect scores needed. Just an honest read.</div></div><span class="pill" id="checkinSaved">Saved locally</span></div><div class="checkin-grid"><div><label class="field-label">Mood · 1–5</label><div class="scale-row" id="moodScale">${[[1,'😞','Very low'],[2,'🙁','Low'],[3,'😐','Okay'],[4,'🙂','Good'],[5,'😁','Excellent']].map(x=>`<label class="scale-option"><input type="radio" name="mood" value="${x[0]}"><span><b>${x[1]}</b>${x[2]}</span></label>`).join('')}</div></div><div><label class="field-label">Energy · 1–5</label><div class="scale-row" id="energyScale">${[[1,'🪫','Exhausted'],[2,'🌧','Low'],[3,'🔋','Moderate'],[4,'⚡','Energetic'],[5,'🚀','Very high']].map(x=>`<label class="scale-option"><input type="radio" name="energy" value="${x[0]}"><span><b>${x[1]}</b>${x[2]}</span></label>`).join('')}</div></div></div><div class="checkin-fields" style="margin-top:15px"><div><label class="field-label" for="wentWell">What went well?</label><textarea class="field" id="wentWell" rows="2" maxlength="1000" placeholder="What do you want to give yourself credit for?"></textarea></div><div><label class="field-label" for="heldMeBack">What held me back?</label><textarea class="field" id="heldMeBack" rows="2" maxlength="1000" placeholder="A distraction, a blocker, low energy…"></textarea></div><div><label class="field-label" for="improveTomorrow">One adjustment for tomorrow</label><textarea class="field" id="improveTomorrow" rows="2" maxlength="1000" placeholder="One specific thing to try."></textarea></div></div><div class="muted" style="margin-top:10px">Autosaves as you type. Existing quick-review notes remain preserved below.</div>`;
@@ -754,7 +806,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     document.querySelectorAll('.side-nav a,.bottom-nav a,.side-brand').forEach(a=>{const page=navMap[a.getAttribute('href')]|| (a.id==='navToday'?'home':null);if(page){a.dataset.go=page;a.removeAttribute('href');a.setAttribute('role','button');a.tabIndex=0;}});
     // Build a deliberate five-item mobile navigation; do not reuse legacy anchor labels.
     const nav=document.querySelector('.bottom-nav');
-    if(nav){
+    if(false){
       nav.innerHTML='';
       [['home','⌂','Home'],['tasks','☷','Tasks'],['habits','♧','Habits'],['focus','◷','Focus'],['reflection','▤','Review']].forEach(([page,icon,label])=>{
         const a=document.createElement('a');a.dataset.go=page;a.setAttribute('role','button');a.tabIndex=0;
@@ -769,6 +821,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     ['mood','energy'].forEach(name=>document.getElementById(name+'Scale').addEventListener('change',e=>{if(e.target.matches('input')){const c=getCheckIn();c[name]=Number(e.target.value);c.updatedAt=new Date().toISOString();save();captureSnapshot();document.getElementById('checkinSaved').textContent='Saved';}}));
     ['wentWell','heldMeBack','improveTomorrow'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{const c=getCheckIn();c[{wentWell:'wentWell',heldMeBack:'heldMeBack',improveTomorrow:'improveTomorrow'}[id]]=e.target.value;c.updatedAt=new Date().toISOString();save();captureSnapshot();document.getElementById('checkinSaved').textContent='Saved';}));
     ['weeklyWin','weeklyObstacle','weeklyHelped','weeklyChange'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{const w=getWeeklyReview();w[{weeklyWin:'biggestWin',weeklyObstacle:'biggestObstacle',weeklyHelped:'whatHelped',weeklyChange:'nextWeekChange'}[id]]=e.target.value;w.updatedAt=new Date().toISOString();save();}));
+    document.addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]'))return;const map={'1':'home','2':'tasks','3':'habits','4':'focus','5':'reflection','6':'settings'};if(map[e.key]){go(map[e.key]);}else if(e.key==='n'||e.key==='N'){e.preventDefault();go('home');setTimeout(()=>{const q=document.getElementById('quickAddInput');if(q)q.focus();},60);}});
     go(location.hash.slice(1)||'home',true);
   }
   function renderHomeTasks(){const el=document.getElementById('homeTaskList');if(!el)return;const list=[...data.tasks].filter(t=>!t.done).sort((a,b)=>(a.priority==='High'?-1:0)-(b.priority==='High'?-1:0)||(a.due||'9999').localeCompare(b.due||'9999')||(a.createdAt||0)-(b.createdAt||0)).slice(0,5);el.innerHTML=list.length?list.map(t=>`<label class="mini-task"><input type="checkbox" data-home-complete="${esc(t.id)}"><span class="mini-name">${esc(t.title)}</span><small>${t.due?formatDate(t.due):'No date'}</small></label>`).join(''):'<div class="empty">No active tasks. Add a task and get rolling.</div>';el.querySelectorAll('[data-home-complete]').forEach(c=>c.addEventListener('change',()=>{const t=data.tasks.find(x=>x.id===c.dataset.homeComplete);if(t){t.done=c.checked;t.completedAt=t.done?new Date().toISOString():null;save();captureSnapshot();renderAll();renderHomeTasks();}}));}

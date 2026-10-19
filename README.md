@@ -22,3 +22,11 @@ Focus timing uses timestamps rather than relying only on interval ticks. Mobile 
 1. Upload `index.html`, `manifest.json`, `sw.js`, `icon.svg`, and `race-hero.png` to the repository root.
 2. Deploy/refresh GitHub Pages.
 3. Open the app and allow the service worker update to activate. Export a JSON backup before major changes.
+
+## v4 changes
+- One sidebar link per page (no double highlighting); static bottom navigation with a floating quick-add button on phones.
+- Home: quick-add bar (adds a task due today), progress ring, Quick actions moved under "Next up".
+- Keyboard shortcuts on desktop: `N` quick add, `1`–`6` switch pages.
+- Mobile hero no longer overlaps the date card.
+- Service worker cache `apex-race-control-v4`; page loads are now network-first so updates are picked up on the next open (offline still falls back to the cached copy).
+- Data layer and the `daylight-pwa-data-v1` key are unchanged.
