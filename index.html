@@ -158,6 +158,11 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     @media(max-width:820px){.shell{display:block}.sidebar{display:none}.app{padding:14px 12px calc(84px + env(safe-area-inset-bottom));}.app>header{margin-bottom:12px}.hero-banner{min-height:210px;padding:22px 18px;background-position:center}.hero-quote{display:none}.hero-date{right:12px;bottom:12px}.grid{grid-template-columns:1fr}.card{padding:16px;border-radius:14px}.bottom-nav{position:fixed;display:flex;z-index:10;bottom:0;left:0;right:0;justify-content:space-around;padding:9px 5px calc(9px + env(safe-area-inset-bottom));background:rgba(3,10,19,.95);backdrop-filter:blur(18px);border-top:1px solid #1b344a}.bottom-nav a{text-decoration:none;color:#91afc8;font-size:10px;text-align:center;min-width:50px}.bottom-nav span{display:block;font-size:19px;margin-bottom:3px;color:#e7f3ff}.week-board{grid-template-columns:repeat(7,minmax(190px,72vw))}.week-range{order:3;width:100%;text-align:left}.timer-ring{width:175px;height:175px}.privacy{font-size:0;padding:9px}.privacy:after{content:"● LOCAL";font-size:10px}.stats{gap:6px}.stat{padding:10px 7px}.stat-num{font-size:19px}}
     @media(max-width:430px){.app h1{font-size:17px}.header-tag{font-size:7px;margin-left:4px;padding:3px}.sub{font-size:10px}.hero-banner{min-height:205px}.welcome h2{font-size:27px}.hero-slogan{font-size:29px}.hero-date{padding:8px}.task-options{grid-template-columns:1fr 1fr}.task-form{grid-template-columns:minmax(0,1fr) auto}.task-form .btn{padding:10px}.card-head{gap:8px}.app h3{font-size:15px}.week-toolbar .btn{padding:7px 8px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+  
+    /* APEX multi-page race-control shell */
+    .page-view{display:none;animation:pageIn .18s ease-out}.page-view.active{display:block}@keyframes pageIn{from{opacity:.6;transform:translateY(3px)}to{opacity:1;transform:none}}
+    .page-heading{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:4px 0 16px}.page-heading h2{margin:0;font-size:24px;font-style:italic;letter-spacing:-.5px}.page-heading p{margin:5px 0 0;color:#8daec8;font-size:12px}.page-stack{display:grid;gap:15px}.home-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:15px;margin-top:15px;align-items:start}.home-mini-tasks{display:grid;gap:7px}.mini-task{display:flex;gap:9px;align-items:center;padding:10px;border:1px solid #1a344a;background:#061320;border-radius:9px}.mini-task .mini-name{flex:1;font-size:12px;overflow-wrap:anywhere}.mini-task.done .mini-name{text-decoration:line-through;color:#6d879c}.mini-task input{accent-color:#ff1737}.mini-task small{color:#8daec8}.checkin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field-label{display:block;color:#a9c5dc;font-size:11px;font-weight:700;margin-bottom:7px}.scale-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.scale-option{position:relative}.scale-option input{position:absolute;opacity:0;pointer-events:none}.scale-option span{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;border:1px solid #233e55;background:#071522;border-radius:9px;color:#a7c2d8;font-size:10px;text-align:center;cursor:pointer;min-height:58px}.scale-option b{font-size:18px}.scale-option input:checked+span{border-color:#ff3554;background:#2b111b;color:#fff;box-shadow:0 0 14px #ff17371b}.checkin-fields{display:grid;gap:12px}.analytics-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:15px}.chart-card{border:1px solid #1b344a;border-radius:12px;padding:13px;background:#061320;min-width:0}.chart-title{font-size:11px;color:#9cb9d2;margin-bottom:12px}.bar-chart{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));align-items:end;gap:7px;height:120px;padding-top:6px}.bar-col{height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:6px;min-width:0}.bar{width:min(100%,22px);min-height:2px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#ff3654,#a80027);box-shadow:0 0 12px #ff173722}.bar.blue{background:linear-gradient(180deg,#168cff,#124b85)}.bar-label{font-size:9px;color:#7998b2}.bar-value{font-size:9px;color:#c5d9e9}.range-control{display:flex;gap:5px}.range-control button{padding:6px 9px;font-size:10px}.history-list{display:grid;gap:7px}.history-row{display:flex;justify-content:space-between;gap:10px;padding:10px;border-bottom:1px solid #152b3e;font-size:12px}.history-row small{display:block;color:#819eb7;margin-top:4px}.settings-note{border:1px solid #245044;background:#061a1b;color:#9ce9d3;padding:12px;border-radius:10px;font-size:12px;line-height:1.5}.page-view #weekSection{margin-bottom:0!important}.page-view #tasksSection{margin-bottom:0}.page-view #dataSection{margin-bottom:0}.page-view .hero-banner{margin-bottom:0}.bottom-nav a.active{color:#fff}.bottom-nav a.active span{color:#ff4259}.page-view .apex-utility-grid,.page-view .apex-primary-grid,.page-view .apex-lower-grid{display:contents}
+    @media(max-width:820px){.home-grid{grid-template-columns:1fr}.checkin-grid{grid-template-columns:1fr}.analytics-grid{grid-template-columns:1fr}.page-heading h2{font-size:22px}.scale-option span{font-size:9px;padding:8px 2px}.bar-chart{height:105px}}
   </style>
 </head>
 <body>
@@ -308,7 +313,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
   const KEY = "daylight-pwa-data-v1";
   const today = () => new Date().toLocaleDateString("en-CA");
   const newId = () => (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
-  const defaultData = () => ({ tasks: [], habits: [], sessions: [], reflections: {}, settings: { focusMinutes: 25 } });
+  const defaultData = () => ({ tasks: [], habits: [], sessions: [], reflections: {}, dailyCheckIns: {}, dailySnapshots: {}, weeklyReviews: {}, settings: { focusMinutes: 25 } });
   let data = loadData();
   let filter = "active";
   let remaining = Math.max(1, Number(data.settings.focusMinutes) || 25) * 60;
@@ -329,6 +334,9 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
         habits: Array.isArray(parsed.habits) ? parsed.habits : [],
         sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
         reflections: parsed.reflections && typeof parsed.reflections === "object" ? parsed.reflections : {},
+        dailyCheckIns: parsed.dailyCheckIns && typeof parsed.dailyCheckIns === "object" ? parsed.dailyCheckIns : {},
+        dailySnapshots: parsed.dailySnapshots && typeof parsed.dailySnapshots === "object" ? parsed.dailySnapshots : {},
+        weeklyReviews: parsed.weeklyReviews && typeof parsed.weeklyReviews === "object" ? parsed.weeklyReviews : {},
         settings: { focusMinutes: Number(parsed.settings?.focusMinutes) || 25 }
       };
     } catch (e) { return defaultData(); }
@@ -353,7 +361,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
   function todayTasks() { return data.tasks.filter(t => !t.due || t.due === today()); }
   function completedHabits() { return data.habits.filter(h => (h.completedDates || []).includes(today())).length; }
   function todayFocusMinutes() {
-    return data.sessions.filter(s => s.date === today()).reduce((sum,s) => sum + (Number(s.minutes)||0), 0);
+    return Math.floor(data.sessions.reduce((sum,s) => sum + secondsTodayFromSession(s,today()), 0) / 60);
   }
   function renderHeader() {
     const now = new Date();
@@ -416,10 +424,10 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
   function renderTimer() {
     const mins = Math.floor(remaining / 60), secs = remaining % 60;
     document.getElementById("timerTime").textContent = `${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
-    document.getElementById("timerLabel").textContent = running ? "Stay with this task" : "Ready to focus";
+    document.getElementById("timerLabel").textContent = running ? "Stay with this task" : activeSession ? "Stint paused" : "Ready to focus";
     const total = Math.max(1, Number(document.getElementById("focusMinutes").value) || 25) * 60;
     document.getElementById("timerRing").style.setProperty("--angle", `${Math.max(0, Math.min(1, 1 - remaining / total)) * 360}deg`);
-    document.getElementById("startPause").textContent = running ? "Pause" : "Start focus";
+    document.getElementById("startPause").textContent = running ? "Pause" : activeSession ? "Resume stint" : "Start focus";
     document.getElementById("sessionCount").textContent = `${data.sessions.length} sessions`;
   }
   function renderReflection() {
@@ -518,8 +526,8 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     const id = e.target.dataset.weekComplete;
     if (!id) return;
     const task = data.tasks.find(t=>t.id===id);
-    if (task) task.done = e.target.checked;
-    save(); renderAll();
+    if (task) { task.done = e.target.checked; task.completedAt = task.done ? new Date().toISOString() : null; }
+    save(); captureSnapshot(); renderAll();
   });
   document.getElementById("showUnscheduled").addEventListener("click", () => { showUnscheduled=!showUnscheduled; renderWeekBoard(); });
   document.getElementById("unscheduledPanel").addEventListener("click", e => {
@@ -547,8 +555,8 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
   document.querySelectorAll("[data-filter]").forEach(b => b.addEventListener("click", () => { filter = b.dataset.filter; renderTasks(); }));
   document.getElementById("taskList").addEventListener("change", e => {
     const id = e.target.dataset.complete; if (!id) return;
-    const t = data.tasks.find(x => x.id === id); if (t) t.done = e.target.checked;
-    save(); renderAll();
+    const t = data.tasks.find(x => x.id === id); if (t) { t.done = e.target.checked; t.completedAt = t.done ? new Date().toISOString() : null; }
+    save(); captureSnapshot(); renderAll();
   });
   document.getElementById("taskList").addEventListener("click", e => {
     const edit = e.target.closest("[data-edit]")?.dataset.edit;
@@ -573,7 +581,7 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     const h = data.habits.find(x=>x.id===id); if (!h) return;
     h.completedDates = h.completedDates || [];
     h.completedDates = e.target.checked ? [...new Set([...h.completedDates,today()])] : h.completedDates.filter(d=>d!==today());
-    save(); renderAll();
+    save(); captureSnapshot(); renderAll();
   });
   document.getElementById("habitList").addEventListener("click", e => {
     const id = e.target.closest("[data-habit-delete]")?.dataset.habitDelete;
@@ -586,38 +594,72 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
     if (!running) remaining=n*60;
     renderTimer();
   });
+  let activeSession = null;
   function stopTicker() { if (timerHandle) clearInterval(timerHandle); timerHandle = null; }
+  function secondsTodayFromSession(session, key=today()) {
+    if (Array.isArray(session.dateSegments)) return session.dateSegments.filter(x=>x.date===key).reduce((n,x)=>n+(Number(x.seconds)||0),0);
+    if (session.date===key) return Number(session.elapsedFocusSeconds) || (Number(session.minutes)||0)*60;
+    return 0;
+  }
+  function addSessionSeconds(session, seconds, fromMs, toMs) {
+    let cursor=fromMs; let remainingSeconds=Math.max(0,Math.floor(seconds));
+    while (cursor<toMs && remainingSeconds>0) {
+      const d=new Date(cursor); const midnight=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1).getTime();
+      const chunk=Math.min(remainingSeconds,Math.max(1,Math.floor((Math.min(toMs,midnight)-cursor)/1000)));
+      const key=dateKey(d); const existing=session.dateSegments.find(x=>x.date===key);
+      if(existing) existing.seconds+=chunk; else session.dateSegments.push({date:key,seconds:chunk});
+      cursor+=chunk*1000; remainingSeconds-=chunk;
+    }
+  }
+  function commitActiveSegment(now=Date.now()) {
+    if(!activeSession || !activeSession.segmentStartedAt) return;
+    const from=activeSession.segmentStartedAt; const seconds=Math.max(0,Math.floor((now-from)/1000));
+    if(seconds>0) { addSessionSeconds(activeSession,seconds,from,now); activeSession.elapsedFocusSeconds=(activeSession.elapsedFocusSeconds||0)+seconds; }
+    activeSession.segmentStartedAt=null;
+  }
+  function persistActiveSession(status) {
+    if(!activeSession) return;
+    activeSession.status=status; activeSession.updatedAt=new Date().toISOString();
+    const existing=data.sessions.findIndex(s=>s.id===activeSession.id);
+    if(existing>=0) data.sessions[existing]=activeSession; else data.sessions.push(activeSession);
+    save(); captureSnapshot(); if(typeof renderFocusHistory==="function") renderFocusHistory();
+  }
   function tick() {
     if (!running || endAt === null) return;
     remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
     if (remaining <= 0) {
-      running = false; endAt = null; stopTicker();
-      const minutes = Math.max(1, Math.round((Number(document.getElementById("focusMinutes").value)||25)));
-      data.sessions.push({ id:newId(), date:today(), minutes, completedAt:new Date().toISOString() });
-      save(); remaining = minutes * 60; renderAll(); showToast("Focus session complete — nice work!");
-      if ("vibrate" in navigator) navigator.vibrate([150,80,150]);
-      return;
+      commitActiveSegment(Date.now()); running=false; endAt=null; stopTicker();
+      if(activeSession) { activeSession.endedAt=new Date().toISOString(); activeSession.completedAt=activeSession.endedAt; activeSession.minutes=Math.floor((activeSession.elapsedFocusSeconds||0)/60); persistActiveSession("completed"); activeSession=null; }
+      const minutes=Math.max(1,Number(document.getElementById("focusMinutes").value)||25); remaining=minutes*60; renderAll(); showToast("Focus stint complete — nice work!");
+      if ("vibrate" in navigator) navigator.vibrate([150,80,150]); return;
     }
     renderTimer();
   }
   document.getElementById("startPause").addEventListener("click", () => {
     if (running) {
-      running=false; endAt=null; stopTicker(); renderTimer(); return;
+      commitActiveSegment(Date.now()); running=false; endAt=null; stopTicker();
+      if(activeSession) persistActiveSession("paused"); renderTimer(); return;
     }
     if (remaining <= 0) remaining = Math.max(1, Number(document.getElementById("focusMinutes").value)||25)*60;
-    running=true; endAt=Date.now()+remaining*1000; timerHandle=setInterval(tick,250); renderTimer();
+    if(!activeSession) activeSession={id:newId(),date:today(),startedAt:new Date().toISOString(),endedAt:null,mode:"focus",status:"running",elapsedFocusSeconds:0,dateSegments:[],minutes:0};
+    activeSession.status="running"; activeSession.segmentStartedAt=Date.now(); activeSession.lastResumedAt=new Date().toISOString();
+    running=true; endAt=Date.now()+remaining*1000; timerHandle=setInterval(tick,250); persistActiveSession("running"); renderTimer();
   });
   document.getElementById("resetTimer").addEventListener("click", () => {
-    running=false; endAt=null; stopTicker(); remaining=Math.max(1,Number(document.getElementById("focusMinutes").value)||25)*60; renderTimer();
+    if(activeSession) { commitActiveSegment(Date.now()); if((activeSession.elapsedFocusSeconds||0)>0) { activeSession.endedAt=new Date().toISOString(); activeSession.minutes=Math.floor(activeSession.elapsedFocusSeconds/60); persistActiveSession("interrupted"); } else { data.sessions=data.sessions.filter(s=>s.id!==activeSession.id); save(); } }
+    activeSession=null; running=false; endAt=null; stopTicker(); remaining=Math.max(1,Number(document.getElementById("focusMinutes").value)||25)*60; renderAll();
   });
   document.getElementById("finishTimer").addEventListener("click", () => {
-    if (!running && remaining === Math.max(1,Number(document.getElementById("focusMinutes").value)||25)*60) { showToast("Start a session first."); return; }
-    const total = Math.max(1, Number(document.getElementById("focusMinutes").value)||25);
-    const elapsed = Math.max(0, Math.floor((total*60-remaining)/60));
-    running=false; endAt=null; stopTicker();
-    if (elapsed > 0) data.sessions.push({id:newId(),date:today(),minutes:elapsed,completedAt:new Date().toISOString(),partial:true});
-    save(); remaining=total*60; renderAll(); showToast(elapsed ? `Saved ${elapsed} focus minutes.` : "Session ended.");
+    if(!activeSession && !running) { showToast("Start a session first."); return; }
+    commitActiveSegment(Date.now()); running=false; endAt=null; stopTicker();
+    if(activeSession) { activeSession.endedAt=new Date().toISOString(); activeSession.minutes=Math.floor((activeSession.elapsedFocusSeconds||0)/60); persistActiveSession("interrupted"); const secs=activeSession.elapsedFocusSeconds||0; activeSession=null; showToast(`Saved ${Math.floor(secs/60)}m ${secs%60}s of focus time.`); }
+    remaining=Math.max(1,Number(document.getElementById("focusMinutes").value)||25)*60; renderAll();
   });
+  // Recover a running session after a reload as paused; only active, timestamped segments count.
+  const savedRunning=data.sessions.find(s=>s.status==="running" && s.segmentStartedAt);
+  if(savedRunning) { const from=Number(savedRunning.segmentStartedAt); if(Number.isFinite(from)&&from<Date.now()){savedRunning.dateSegments=Array.isArray(savedRunning.dateSegments)?savedRunning.dateSegments:[]; const secs=Math.max(0,Math.floor((Date.now()-from)/1000)); if(secs){addSessionSeconds(savedRunning,secs,from,Date.now());savedRunning.elapsedFocusSeconds=(Number(savedRunning.elapsedFocusSeconds)||0)+secs;}} savedRunning.status="paused"; savedRunning.segmentStartedAt=null; savedRunning.updatedAt=new Date().toISOString(); save(); }
+  document.addEventListener("visibilitychange",()=>{if(running){tick();if(activeSession){commitActiveSegment(Date.now());activeSession.segmentStartedAt=Date.now();persistActiveSession("running");}}});
+  window.addEventListener("pagehide",()=>{if(running&&activeSession){commitActiveSegment(Date.now());activeSession.segmentStartedAt=Date.now();persistActiveSession("running");}});
   document.getElementById("reflection").addEventListener("input", e => {
     data.reflections[today()] = e.target.value; save();
   });
@@ -632,19 +674,86 @@ html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(e
       const parsed=JSON.parse(await file.text()); const incoming=parsed.data || parsed;
       if (!incoming || !Array.isArray(incoming.tasks) || !Array.isArray(incoming.habits) || !Array.isArray(incoming.sessions)) throw new Error("Invalid backup structure");
       if (!confirm("Import this backup and replace the data currently in this browser? Export your current data first if you need it.")) { e.target.value=""; return; }
-      data = { tasks:incoming.tasks, habits:incoming.habits, sessions:incoming.sessions, reflections:incoming.reflections && typeof incoming.reflections==="object" ? incoming.reflections : {}, settings:{focusMinutes:Number(incoming.settings?.focusMinutes)||25} };
+      data = { tasks:incoming.tasks, habits:incoming.habits, sessions:incoming.sessions, reflections:incoming.reflections && typeof incoming.reflections==="object" ? incoming.reflections : {}, dailyCheckIns:incoming.dailyCheckIns && typeof incoming.dailyCheckIns==="object" ? incoming.dailyCheckIns : {}, dailySnapshots:incoming.dailySnapshots && typeof incoming.dailySnapshots==="object" ? incoming.dailySnapshots : {}, weeklyReviews:incoming.weeklyReviews && typeof incoming.weeklyReviews==="object" ? incoming.weeklyReviews : {}, settings:{focusMinutes:Number(incoming.settings?.focusMinutes)||25} };
+      running=false; endAt=null; stopTicker(); activeSession=null;
       save(); remaining=data.settings.focusMinutes*60; renderAll(); showToast("Backup imported.");
     } catch (err) { showToast("That file is not a valid APEX backup."); }
     e.target.value="";
   });
   document.getElementById("clearBtn").addEventListener("click", () => {
     if (!confirm("Permanently delete all APEX tasks, habits, focus history and reflections from this browser? Export a backup first if needed.")) return;
-    data=defaultData(); save(); running=false; endAt=null; stopTicker(); remaining=25*60; document.getElementById("focusMinutes").value=25; renderAll(); showToast("App data deleted from this browser.");
+    data=defaultData(); save(); running=false; endAt=null; stopTicker(); activeSession=null; remaining=25*60; document.getElementById("focusMinutes").value=25; renderAll(); showToast("App data deleted from this browser.");
   });
+  // Build real, navigable pages from the existing components. All data remains in the original local store.
+  function buildPages() {
+    const app=document.querySelector("main.app");
+    const header=app.querySelector(":scope > header");
+    const hero=app.querySelector(":scope > .welcome");
+    const oldPrimary=app.querySelector(":scope > .apex-primary-grid");
+    const oldLower=app.querySelector(":scope > .apex-lower-grid");
+    const week=document.getElementById("weekSection");
+    const oldUtility=app.querySelector(":scope > .apex-utility-grid");
+    const footer=app.querySelector(":scope > .footer");
+    const tasks=document.getElementById("tasksSection"), focus=document.getElementById("focusSection"), habits=document.getElementById("habitsSection"), progress=document.getElementById("progressSection"), reflection=document.getElementById("reflectionSection"), dataSection=document.getElementById("dataSection");
+    const views=document.createElement("div"); views.id="viewContainer"; header.after(views);
+    const makePage=(id,title,desc)=>{const page=document.createElement("section");page.className="page-view";page.id="page-"+id;page.dataset.page=id;page.innerHTML=`<div class="page-heading"><div><h2>${title}</h2><p>${desc}</p></div></div><div class="page-stack"></div>`;views.append(page);return page.querySelector(".page-stack");};
+    const home=makePage("home","Race Control","A clear view of today. Focus on the next useful move.");
+    const taskPage=makePage("tasks","Race Plan","Plan the week, set priorities, and keep execution visible.");
+    const focusPage=makePage("focus","Focus Stint","Track active focus time, including interrupted stints.");
+    const habitPage=makePage("habits","Consistency","Small actions, repeated. Build a streak you can trust.");
+    const reflectPage=makePage("reflection","Telemetry & Debrief","Check in honestly, spot patterns, and choose the next adjustment.");
+    const settingsPage=makePage("settings","Settings & Data","Your information stays in this browser profile.");
+    const homeGrid=document.createElement("div");homeGrid.className="home-grid";
+    const homeTasks=document.createElement("section");homeTasks.className="card";homeTasks.innerHTML='<div class="card-head"><div><h3>Next up</h3><div class="muted">Your top tasks for today.</div></div><button class="btn ghost small" data-go="tasks">All tasks →</button></div><div class="home-mini-tasks" id="homeTaskList"></div>';
+    const homeRight=document.createElement("div");homeRight.className="page-stack";
+    const quick=document.createElement("section");quick.className="card";quick.innerHTML='<div class="card-head"><div><h3>Quick actions</h3><div class="muted">Keep the momentum.</div></div></div><div class="quick-grid"><button class="quick-action" data-action="new-task"><span class="quick-icon">✓</span><span>New task</span></button><button class="quick-action" data-go="habits"><span class="quick-icon">▥</span><span>Habits</span></button><button class="quick-action" data-go="focus"><span class="quick-icon">◴</span><span>Start focus</span></button><button class="quick-action" data-go="reflection"><span class="quick-icon">▤</span><span>Daily debrief</span></button></div>';
+    const privacy=document.createElement("div");privacy.className="settings-note";privacy.textContent="PRIVATE BY DEFAULT · Stored locally in this browser. It does not sync automatically between your Windows laptop and iPhone.";
+    homeGrid.append(homeTasks,homeRight);homeRight.append(progress,quick,privacy);home.append(hero,homeGrid);
+    taskPage.append(tasks,week);focusPage.append(focus);const focusHistory=document.createElement("section");focusHistory.className="card";focusHistory.id="focusHistoryCard";focusHistory.innerHTML='<div class="card-head"><div><h3>Stint history</h3><div class="muted">Completed and interrupted focus sessions.</div></div></div><div class="history-list" id="focusHistoryList"></div>';focusPage.append(focusHistory);habitPage.append(habits);
+    const analytics=document.createElement("section");analytics.className="card";analytics.id="analyticsSection";analytics.innerHTML='<div class="card-head"><div><h3>Performance analytics</h3><div class="muted">Daily snapshots are recorded as you use APEX. No history is invented for earlier dates.</div></div><div class="range-control"><button class="filter-btn active" data-range="7">7D</button><button class="filter-btn" data-range="30">30D</button><button class="filter-btn" data-range="90">90D</button></div></div><div class="analytics-grid" id="analyticsStats"></div><div class="chart-card"><div class="chart-title">Daily focus time</div><div class="bar-chart" id="focusChart"></div></div><div class="chart-card" style="margin-top:10px"><div class="chart-title">Task completion</div><div class="bar-chart" id="taskChart"></div></div>';
+    const checkin=document.createElement("section");checkin.className="card";checkin.id="checkinCard";checkin.innerHTML=`<div class="card-head"><div><h3>Daily check-in</h3><div class="muted">No perfect scores needed. Just an honest read.</div></div><span class="pill" id="checkinSaved">Saved locally</span></div><div class="checkin-grid"><div><label class="field-label">Mood · 1–5</label><div class="scale-row" id="moodScale">${[[1,'😞','Very low'],[2,'🙁','Low'],[3,'😐','Okay'],[4,'🙂','Good'],[5,'😁','Excellent']].map(x=>`<label class="scale-option"><input type="radio" name="mood" value="${x[0]}"><span><b>${x[1]}</b>${x[2]}</span></label>`).join('')}</div></div><div><label class="field-label">Energy · 1–5</label><div class="scale-row" id="energyScale">${[[1,'🪫','Exhausted'],[2,'🌧','Low'],[3,'🔋','Moderate'],[4,'⚡','Energetic'],[5,'🚀','Very high']].map(x=>`<label class="scale-option"><input type="radio" name="energy" value="${x[0]}"><span><b>${x[1]}</b>${x[2]}</span></label>`).join('')}</div></div></div><div class="checkin-fields" style="margin-top:15px"><div><label class="field-label" for="wentWell">What went well?</label><textarea class="field" id="wentWell" rows="2" maxlength="1000" placeholder="What do you want to give yourself credit for?"></textarea></div><div><label class="field-label" for="heldMeBack">What held me back?</label><textarea class="field" id="heldMeBack" rows="2" maxlength="1000" placeholder="A distraction, a blocker, low energy…"></textarea></div><div><label class="field-label" for="improveTomorrow">One adjustment for tomorrow</label><textarea class="field" id="improveTomorrow" rows="2" maxlength="1000" placeholder="One specific thing to try."></textarea></div></div><div class="muted" style="margin-top:10px">Autosaves as you type. Existing quick-review notes remain preserved below.</div>`;
+    const weekly=document.createElement("section");weekly.className="card";weekly.id="weeklyReviewCard";weekly.innerHTML='<div class="card-head"><div><h3>Weekly debrief</h3><div class="muted" id="reviewWeekLabel">Review this Monday–Sunday week.</div></div></div><div class="checkin-fields"><div><label class="field-label" for="weeklyWin">Biggest win</label><textarea class="field" id="weeklyWin" rows="2" maxlength="1000"></textarea></div><div><label class="field-label" for="weeklyObstacle">Biggest obstacle</label><textarea class="field" id="weeklyObstacle" rows="2" maxlength="1000"></textarea></div><div><label class="field-label" for="weeklyHelped">What helped?</label><textarea class="field" id="weeklyHelped" rows="2" maxlength="1000"></textarea></div><div><label class="field-label" for="weeklyChange">What will I change next week?</label><textarea class="field" id="weeklyChange" rows="2" maxlength="1000"></textarea></div></div><p class="muted">Weekly review autosaves locally.</p>';
+    reflectPage.append(checkin,weekly,analytics,reflection);settingsPage.append(dataSection);
+    [oldPrimary,oldLower,oldUtility].forEach(el=>{if(el)el.remove()});
+    // footer remains available on every page, but is placed after the page views
+    views.after(footer);
+    const navMap={'#top':'home','#tasksSection':'tasks','#habitsSection':'habits','#focusSection':'focus','#weekSection':'tasks','#reflectionSection':'reflection','#progressSection':'home','#dataSection':'settings'};
+    document.querySelectorAll('.side-nav a,.bottom-nav a,.side-brand').forEach(a=>{const page=navMap[a.getAttribute('href')]|| (a.id==='navToday'?'home':null);if(page){a.dataset.go=page;a.removeAttribute('href');a.setAttribute('role','button');a.tabIndex=0;}});
+    document.querySelectorAll('.bottom-nav a').forEach(a=>{if(a.dataset.go==='tasks') {a.innerHTML='<span>✓</span>Tasks';} else if(a.dataset.go==='home')a.innerHTML='<span>⌂</span>Home'; else if(a.dataset.go==='reflection')a.innerHTML='<span>▤</span>Review';});
+    const nav=document.querySelector('.bottom-nav'); if(nav){nav.querySelectorAll('a').forEach(a=>{if(a.dataset.go==='settings')a.remove()});const review=nav.querySelector('[data-go="reflection"]');if(!review){const a=document.createElement('a');a.dataset.go='reflection';a.innerHTML='<span>▤</span>Review';nav.append(a)} }
+    function go(page,replace=false){if(!document.getElementById('page-'+page))page='home';document.querySelectorAll('.page-view').forEach(v=>v.classList.toggle('active',v.dataset.page===page));document.querySelectorAll('[data-go]').forEach(a=>a.classList.toggle('active',a.dataset.go===page));if(!replace)history.pushState({page},'',`#${page}`);document.querySelector('.app').scrollIntoView({block:'start'});renderHomeTasks();renderAnalytics();renderCheckIn();renderWeeklyReview();renderFocusHistory();}
+    document.addEventListener('click',e=>{const goEl=e.target.closest('[data-go]');if(goEl){e.preventDefault();go(goEl.dataset.go);return}const action=e.target.closest('[data-action]')?.dataset.action;if(action==='new-task'){go('tasks');setTimeout(()=>document.getElementById('taskInput').focus(),100)}});
+    document.addEventListener('keydown',e=>{const a=e.target.closest('[data-go]');if(a&&(e.key==='Enter'||e.key===' ')){e.preventDefault();go(a.dataset.go)}});
+    window.addEventListener('popstate',()=>go(location.hash.slice(1)||'home',true));
+    document.querySelectorAll('[data-range]').forEach(b=>b.addEventListener('click',()=>{analyticsRange=Number(b.dataset.range);document.querySelectorAll('[data-range]').forEach(x=>x.classList.toggle('active',x===b));renderAnalytics()}));
+    ['mood','energy'].forEach(name=>document.getElementById(name+'Scale').addEventListener('change',e=>{if(e.target.matches('input')){const c=getCheckIn();c[name]=Number(e.target.value);c.updatedAt=new Date().toISOString();save();captureSnapshot();document.getElementById('checkinSaved').textContent='Saved';}}));
+    ['wentWell','heldMeBack','improveTomorrow'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{const c=getCheckIn();c[{wentWell:'wentWell',heldMeBack:'heldMeBack',improveTomorrow:'improveTomorrow'}[id]]=e.target.value;c.updatedAt=new Date().toISOString();save();captureSnapshot();document.getElementById('checkinSaved').textContent='Saved';}));
+    ['weeklyWin','weeklyObstacle','weeklyHelped','weeklyChange'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{const w=getWeeklyReview();w[{weeklyWin:'biggestWin',weeklyObstacle:'biggestObstacle',weeklyHelped:'whatHelped',weeklyChange:'nextWeekChange'}[id]]=e.target.value;w.updatedAt=new Date().toISOString();save();}));
+    go(location.hash.slice(1)||'home',true);
+  }
+  function renderHomeTasks(){const el=document.getElementById('homeTaskList');if(!el)return;const list=[...data.tasks].filter(t=>!t.done).sort((a,b)=>(a.priority==='High'?-1:0)-(b.priority==='High'?-1:0)||(a.due||'9999').localeCompare(b.due||'9999')||(a.createdAt||0)-(b.createdAt||0)).slice(0,5);el.innerHTML=list.length?list.map(t=>`<label class="mini-task"><input type="checkbox" data-home-complete="${esc(t.id)}"><span class="mini-name">${esc(t.title)}</span><small>${t.due?formatDate(t.due):'No date'}</small></label>`).join(''):'<div class="empty">No active tasks. Add a task and get rolling.</div>';el.querySelectorAll('[data-home-complete]').forEach(c=>c.addEventListener('change',()=>{const t=data.tasks.find(x=>x.id===c.dataset.homeComplete);if(t){t.done=c.checked;t.completedAt=t.done?new Date().toISOString():null;save();captureSnapshot();renderAll();renderHomeTasks();}}));}
+  let analyticsRange=7;
+  function getCheckIn(){if(!data.dailyCheckIns)data.dailyCheckIns={};if(!data.dailyCheckIns[today()])data.dailyCheckIns[today()]={date:today(),mood:null,energy:null,wentWell:'',heldMeBack:'',improveTomorrow:'',updatedAt:new Date().toISOString()};return data.dailyCheckIns[today()]}
+  function getWeeklyReview(){if(!data.weeklyReviews)data.weeklyReviews={};const key=dateKey(startOfWeek(new Date()));if(!data.weeklyReviews[key])data.weeklyReviews[key]={weekStart:key,biggestWin:'',biggestObstacle:'',whatHelped:'',nextWeekChange:'',updatedAt:new Date().toISOString()};return data.weeklyReviews[key]}
+  function captureSnapshot(){if(!data.dailySnapshots)data.dailySnapshots={};const key=today();const possible=data.habits.length;const done=data.habits.filter(h=>(h.completedDates||[]).includes(key)).length;const tasks=data.tasks.filter(t=>t.due===key);const old=data.dailySnapshots[key]||{};data.dailySnapshots[key]={date:key,tasksPlanned:tasks.length,tasksCompleted:tasks.filter(t=>t.done).length,habitChecksPossible:possible,habitChecksCompleted:done,focusSeconds:data.sessions.reduce((n,s)=>n+secondsTodayFromSession(s,key),0),reflectionSaved:!!((data.reflections[key]||'').trim()||((data.dailyCheckIns||{})[key]&&Object.values(data.dailyCheckIns[key]).some(v=>typeof v==='string'&&v.trim()))),mood:(data.dailyCheckIns[key]||{}).mood??old.mood??null,energy:(data.dailyCheckIns[key]||{}).energy??old.energy??null,updatedAt:new Date().toISOString()};save();if(typeof renderAnalytics==='function')renderAnalytics();}
+  function renderCheckIn(){const c=getCheckIn();[['mood',c.mood],['energy',c.energy]].forEach(([name,value])=>{document.querySelectorAll(`input[name="${name}"]`).forEach(i=>i.checked=Number(i.value)===Number(value)&&value!==null)});['wentWell','heldMeBack','improveTomorrow'].forEach(id=>{const el=document.getElementById(id);if(el&&el.value!==c[id])el.value=c[id]||''});const label=document.getElementById('reviewWeekLabel');if(label)label.textContent=`Week of ${formatDate(dateKey(startOfWeek(new Date())))} · Monday–Sunday`;}
+  function renderWeeklyReview(){const w=getWeeklyReview();[['weeklyWin','biggestWin'],['weeklyObstacle','biggestObstacle'],['weeklyHelped','whatHelped'],['weeklyChange','nextWeekChange']].forEach(([id,key])=>{const el=document.getElementById(id);if(el&&el.value!==w[key])el.value=w[key]||''});}
+  function renderFocusHistory(){const el=document.getElementById('focusHistoryList');if(!el)return;const sessions=[...data.sessions].sort((a,b)=>String(b.startedAt||b.completedAt||'').localeCompare(String(a.startedAt||a.completedAt||''))).slice(0,20);if(!sessions.length){el.innerHTML='<div class="empty">No focus stints yet. Start one when you are ready.</div>';return;}el.innerHTML=sessions.map(s=>{const secs=Number(s.elapsedFocusSeconds)||((Number(s.minutes)||0)*60);const when=s.startedAt||s.completedAt;const label=when?new Date(when).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):(s.date||'Older session');const status=s.status|| (s.partial?'interrupted':'completed');return `<div class="history-row"><div><strong>${label}</strong><small>${status.charAt(0).toUpperCase()+status.slice(1)}${s.dateSegments?.length>1?' · Spanned multiple days':''}</small></div><strong>${Math.floor(secs/60)}m ${secs%60}s</strong></div>`}).join('');}
+  function renderAnalytics(){const stats=document.getElementById('analyticsStats');if(!stats)return;const dates=Array.from({length:analyticsRange},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(analyticsRange-1-i));return dateKey(d)});const recorded=dates.map(k=>data.dailySnapshots[k]).filter(Boolean);const focus=recorded.reduce((n,s)=>n+(Number(s.focusSeconds)||0),0);const tasks=recorded.reduce((n,s)=>n+(Number(s.tasksCompleted)||0),0);const moods=dates.map(k=>data.dailySnapshots[k]?.mood).filter(v=>v!=null);const energies=dates.map(k=>data.dailySnapshots[k]?.energy).filter(v=>v!=null);const habitPossible=recorded.reduce((n,s)=>n+(Number(s.habitChecksPossible)||0),0);const habitDone=recorded.reduce((n,s)=>n+(Number(s.habitChecksCompleted)||0),0);stats.innerHTML=`<div class="stat"><div class="stat-num">${Math.round(focus/60)}m</div><div class="stat-label">Recorded focus · ${analyticsRange} days</div></div><div class="stat"><div class="stat-num">${tasks}</div><div class="stat-label">Tasks completed on scheduled days</div></div><div class="stat"><div class="stat-num">${moods.length?(moods.reduce((a,b)=>a+Number(b),0)/moods.length).toFixed(1):'—'}</div><div class="stat-label">Average mood · recorded days</div></div><div class="stat"><div class="stat-num">${energies.length?(energies.reduce((a,b)=>a+Number(b),0)/energies.length).toFixed(1):'—'}</div><div class="stat-label">Average energy · recorded days</div></div><div class="stat"><div class="stat-num">${habitPossible?Math.round(habitDone/habitPossible*100)+'%':'—'}</div><div class="stat-label">Habit check completion</div></div>`;const build=(id,key,fmt,max,blue=false)=>{const chart=document.getElementById(id);const raw=dates.map(k=>({key:k,val:Number(data.dailySnapshots[k]?.[key])||0}));const bucketCount=analyticsRange===7?7:analyticsRange===30?10:13;const size=Math.ceil(raw.length/bucketCount);const vals=[];for(let i=0;i<raw.length;i+=size){const group=raw.slice(i,i+size);vals.push({key:group[0].key,end:group[group.length-1].key,val:group.reduce((n,v)=>n+v.val,0)});}const peak=Math.max(1,...vals.map(v=>v.val));chart.style.gridTemplateColumns=`repeat(${vals.length},minmax(0,1fr))`;chart.innerHTML=vals.map(v=>`<div class="bar-col" title="${v.key}${v.end!==v.key?' – '+v.end:''}: ${fmt(v.val)}"><div class="bar-value">${fmt(v.val)}</div><div class="bar ${blue?'blue':''}" style="height:${Math.max(v.val?4:2,Math.round(v.val/peak*82))}px"></div><div class="bar-label">${v.key.slice(5)}</div></div>`).join('');};build('focusChart','focusSeconds',v=>v?`${Math.round(v/60)}m`:'—',null,false);build('taskChart','tasksCompleted',v=>String(v),null,true);document.querySelectorAll('[data-range]').forEach(b=>b.classList.toggle('active',Number(b.dataset.range)===analyticsRange));}
+  // Page construction and snapshot capture are initialized after all legacy handlers exist.
+  buildPages();
+  document.getElementById('taskList').addEventListener('change',e=>{if(e.target.dataset.complete){captureSnapshot();renderHomeTasks()}});
+  document.getElementById('weekBoard').addEventListener('change',e=>{if(e.target.dataset.weekComplete){captureSnapshot();renderHomeTasks()}});
+  document.getElementById('taskForm').addEventListener('submit',()=>setTimeout(()=>{captureSnapshot();renderHomeTasks()},0));
+  document.getElementById('habitForm').addEventListener('submit',()=>setTimeout(()=>{captureSnapshot()},0));
+  document.getElementById('reflection').addEventListener('input',()=>{captureSnapshot()});
+
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
     window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
   }
   renderAll();
+  captureSnapshot();
+  renderHomeTasks(); renderAnalytics(); renderCheckIn(); renderWeeklyReview(); renderFocusHistory();
 })();
 </script>
 </body>
