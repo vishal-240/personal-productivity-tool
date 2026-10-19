@@ -1,14 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#171a24">
-  <meta name="description" content="A private, local-first personal productivity app.">
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <title>Daylight — Personal Productivity</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#171a24" name="theme-color"/>
+<meta content="APEX — your personal F1-inspired productivity cockpit. Private and local-first." name="description"/>
+<link href="./manifest.json" rel="manifest"/>
+<link href="./icon.svg" rel="icon" type="image/svg+xml"/>
+<title>APEX — Personal Productivity</title>
+<style>
     :root {
       color-scheme: light;
       --bg: #f4f5f8; --panel: #fff; --ink: #202333; --muted: #74798b;
@@ -139,9 +140,18 @@
       .bottom-nav { background:rgba(28,31,41,.94); }
       .btn.danger { background:#46252d; }
     }
-  </style>
-
-  <style>
+  
+/* APEX race-control visual system */
+:root{color-scheme:dark;--bg:#030914;--panel:#061321;--ink:#f4f8ff;--muted:#8faec8;--line:#19334a;--accent:#ff1536;--accent-soft:#30101b;--green:#35d6ad;--red:#ff405c;--shadow:0 12px 34px rgba(0,0,0,.35);--radius:15px}
+html{scroll-behavior:smooth;background:#020710}body{background:radial-gradient(ellipse at 75% -10%,#0c2b52 0,transparent 44%),linear-gradient(135deg,#020710,#061321 55%,#020710);color:var(--ink)}
+.shell{grid-template-columns:246px minmax(0,1fr);background:transparent}.sidebar{background:linear-gradient(180deg,#020710 0%,#030d19 60%,#020710 100%);border-right:1px solid #20384d;padding:22px 16px 15px}.side-brand{margin-bottom:26px}.side-brand strong{font-size:21px;letter-spacing:1.7px}.side-nav a{border-radius:11px;padding:12px 13px;font-size:14px}.side-nav a.active{background:linear-gradient(100deg,rgba(255,21,54,.19),rgba(8,28,47,.88));border-color:#6e1830;box-shadow:inset 3px 0 #ff1536}.side-driver{background:radial-gradient(ellipse at 45% 100%,#0d3764 0,transparent 68%)}
+.app{max-width:none;width:100%;padding:20px 24px 40px;min-width:0}header{margin-bottom:14px;padding-bottom:15px;border-bottom:1px solid #172e43}.logo{border-radius:11px;background:linear-gradient(145deg,#ff2948,#c60022);box-shadow:0 7px 22px #ff153633;font-style:italic}h1{font-size:22px;font-style:italic;font-weight:900;letter-spacing:-.5px}.header-tag{display:inline-block;margin-left:8px;padding:4px 8px;border:1px solid #672039;border-radius:5px;color:#ff5a72;font-size:9px;letter-spacing:1.4px;vertical-align:middle}.sub{color:#91b1cc}.privacy{background:#071b20;border-color:#1b554c;color:#5fe8c1}.hero-banner{min-height:220px;margin:14px 0 16px;padding:25px 26px;border-radius:17px;background:linear-gradient(90deg,rgba(2,9,18,.96) 0%,rgba(3,12,24,.82) 38%,rgba(3,9,18,.20) 72%,rgba(3,9,18,.72) 100%),url('./race-hero.png') center 48%/cover no-repeat;box-shadow:0 15px 38px #0006}.hero-banner:after{height:3px;background:linear-gradient(90deg,#ff1536 0 34%,#126fff 34% 66%,transparent 100%)}.hero-copy{max-width:600px}.eyebrow{font-size:10px;letter-spacing:2px}.welcome h2{font-size:clamp(27px,3vw,40px);font-weight:900;letter-spacing:-1.3px;margin:0 0 12px}.hero-slogan{font-size:clamp(30px,3.4vw,44px);line-height:1.05;font-weight:900;font-style:italic;letter-spacing:-1.5px}.hero-slogan em{color:#ff2144}.hero-copy>p{color:#a3bfd5}.hero-quote{max-width:260px;text-align:right;font-size:clamp(18px,1.9vw,26px);line-height:1.15;font-weight:800;font-style:italic;text-shadow:0 2px 14px #000}.hero-quote small{font-size:11px;letter-spacing:.3px;margin-top:8px}.hero-date{border:1px solid #25435a;background:#030b16e8;border-radius:10px;padding:10px 13px;bottom:15px;right:17px}.card{background:linear-gradient(145deg,rgba(5,17,30,.98),rgba(3,12,22,.98));border:1px solid #1b354a;border-radius:15px;padding:18px;box-shadow:0 12px 28px #0003;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:70px;height:2px;background:linear-gradient(90deg,#ff1536,transparent)}.card-head{margin-bottom:14px}h3{font-size:17px;font-weight:850;letter-spacing:-.35px}.muted{color:#8eacc5}.field{background:#061321;border:1px solid #1c3549;color:#f5f8ff;border-radius:10px}.field:focus{outline:2px solid #ff1536;outline-offset:1px}.btn{background:linear-gradient(120deg,#ff1536,#d90028);border-radius:10px;box-shadow:0 5px 18px #ff15362b}.btn.secondary{background:#102337;color:#d8e8f6;border:1px solid #25435a;box-shadow:none}.btn.ghost{background:transparent;color:#a9c2d6;border-color:#284157}.filter-btn{background:#071522;color:#a8bfd3;border-color:#243c51}.filter-btn.active{background:#ff1536;color:#fff;border-color:#ff1536}.pill{background:#102438;color:#9fc6e6}.pill.high{background:#38101c;color:#ff6a82}.stat{background:linear-gradient(145deg,#0b1b2b,#061321);border:1px solid #1a3449;border-radius:11px}.progress-wrap{background:#142a3d}.progress{background:linear-gradient(90deg,#ff1536,#ff526a);box-shadow:0 0 13px #ff153655}.timer-ring{background:conic-gradient(#ff1536 var(--angle,0deg),#10375e 0);box-shadow:0 0 25px #001b39}.timer-ring:before{background:#04101d}.timer-time{font-weight:900;letter-spacing:-1px}.task-row,.habit-row{border-color:#142b3e}.week-day{background:linear-gradient(145deg,#0a1d2e,#061321);border-color:#1c374d}.week-day.today{border-color:#ff2144;box-shadow:inset 0 0 0 1px #ff214455}.week-day-head{color:#e6f3ff}.footer{color:#66849c}.toast{background:#11283a;color:#f5f8ff;border:1px solid #29465e}
+.apex-primary-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(310px,1fr);gap:14px;align-items:stretch;margin-bottom:14px}.apex-column{min-width:0;display:flex;flex-direction:column;gap:14px}.apex-primary-grid #tasksSection,.apex-primary-grid #focusSection{height:100%;min-width:0}.apex-primary-grid #focusSection{background:linear-gradient(145deg,rgba(5,17,30,.97),rgba(3,12,22,.96));background-image:linear-gradient(145deg,rgba(5,17,30,.94),rgba(3,12,22,.9)),url('./race-hero.png');background-size:cover;background-position:65% center}.apex-primary-grid #focusSection .timer-ring{margin:16px auto 18px}.apex-lower-grid{display:grid;grid-template-columns:minmax(240px,1fr) minmax(220px,1fr) minmax(220px,.9fr);gap:14px;align-items:stretch;margin-bottom:14px}.apex-lower-grid>*{min-width:0}.apex-lower-grid #habitsSection,.apex-lower-grid #progressSection{height:100%}.apex-lower-grid #progressSection{margin-bottom:0!important}.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.quick-action{display:flex;align-items:center;gap:9px;text-align:left;min-width:0;padding:12px 10px;border:1px solid #203a50;border-radius:11px;background:linear-gradient(130deg,#0b1b2a,#06111e);color:#edf6ff;font-size:12px;font-weight:650}.quick-action:hover{border-color:#ff3453;background:#111b2a}.quick-icon{font-size:18px;color:#ff3553;font-weight:900;width:22px;text-align:center}.apex-lower-grid #progressSection .stats{grid-template-columns:1fr;gap:8px}.apex-lower-grid #progressSection .stat{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px}.apex-lower-grid #progressSection .stat-num{font-size:22px}.apex-lower-grid #progressSection .stat-label{font-size:11px}.apex-utility-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.apex-utility-grid>*{min-width:0}.apex-utility-grid textarea{min-height:110px}
+#weekSection{margin:0 0 14px!important}.week-board{gap:9px}.week-day{min-width:132px}.side-driver .side-quote{font-size:18px}.side-driver .driver-number{font-size:76px}
+@media(max-width:1120px){.shell{grid-template-columns:210px minmax(0,1fr)}.sidebar{padding:18px 12px}.app{padding:18px 16px 34px}.apex-lower-grid{grid-template-columns:1fr 1fr}.apex-lower-grid .apex-quick-actions{grid-column:1/-1}.quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-quote{max-width:210px}}
+@media(max-width:760px){.shell{display:block}.sidebar{display:none}.app{padding:14px 12px calc(92px + env(safe-area-inset-bottom))}header{margin-bottom:12px;padding-bottom:12px}.brand{gap:9px}.logo{width:40px;height:40px}h1{font-size:19px}.header-tag{font-size:8px}.privacy{font-size:0;padding:9px}.privacy:after{content:'● Local';font-size:10px}.hero-banner{min-height:245px;padding:20px 17px;display:block;background-position:40% center}.hero-copy{max-width:100%;padding-top:2px}.welcome h2{font-size:28px}.hero-slogan{font-size:32px;max-width:320px}.hero-quote{position:relative;text-align:left;margin-top:18px;font-size:16px;max-width:230px}.hero-quote small{font-size:10px}.hero-date{position:absolute;right:10px;bottom:10px;padding:8px 9px}.hero-date small{display:none}.apex-primary-grid{grid-template-columns:1fr}.apex-lower-grid{grid-template-columns:1fr}.apex-lower-grid .apex-quick-actions{grid-column:auto}.quick-grid{grid-template-columns:1fr 1fr}.apex-utility-grid{grid-template-columns:1fr}.card{padding:15px;border-radius:13px}.apex-primary-grid #focusSection .timer-ring{width:178px;height:178px}.apex-lower-grid #progressSection .stats{grid-template-columns:repeat(3,minmax(0,1fr))}.apex-lower-grid #progressSection .stat{display:block;padding:10px 7px}.apex-lower-grid #progressSection .stat-num{font-size:18px}.apex-lower-grid #progressSection .stat-label{font-size:10px}.bottom-nav{background:rgba(3,10,19,.96);border-top:1px solid #1b354a;backdrop-filter:blur(18px)}.bottom-nav a{color:#9db8ce}.week-board{grid-template-columns:repeat(7,minmax(190px,72vw))}.week-range{order:3;width:100%;text-align:left}.side-brand{display:none}}
+</style>
+<style>
     :root{color-scheme:dark;--bg:#030914;--panel:#071321;--ink:#f4f8ff;--muted:#91b0ca;--line:#1b344a;--accent:#ff1737;--accent-soft:#32101b;--green:#18d5a4;--red:#ff3554;--blue:#168cff;--shadow:0 16px 38px rgba(0,0,0,.34);--radius:17px}
     *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#0b2851 0,transparent 34%),linear-gradient(140deg,#02060d,#06101c 58%,#020711);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.11;background:repeating-linear-gradient(135deg,transparent 0 12px,rgba(65,111,151,.16) 13px 14px);z-index:-1}button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:246px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;padding:24px 17px 16px;background:linear-gradient(180deg,rgba(3,9,18,.98),rgba(3,10,20,.96));border-right:1px solid #263b52;box-shadow:8px 0 35px #0005;z-index:4}.side-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:white;margin:0 2px 28px}.side-logo{width:40px;height:40px;object-fit:cover;border-radius:9px}.side-brand strong{display:block;font-size:20px;font-weight:900;font-style:italic;letter-spacing:1.3px}.side-brand small{display:block;color:#9bb8d0;font-size:9px;letter-spacing:1.7px;margin-top:4px}.side-nav{display:grid;gap:5px}.side-nav a{display:flex;align-items:center;gap:13px;text-decoration:none;color:#b8d0e4;border:1px solid transparent;padding:11px 13px;border-radius:10px;font-size:14px;transition:.18s}.side-nav a span{font-size:19px;width:22px;text-align:center;color:#d9e9f7}.side-nav a:hover,.side-nav a.active{color:white;background:linear-gradient(90deg,#30111b,#111d2a);border-color:#742235;box-shadow:inset 3px 0 #ff1737}.side-nav a.active span{color:#ff4259}.side-driver{margin-top:auto;padding:18px 6px 10px;position:relative;overflow:hidden;border-top:1px solid #1b344a;background:radial-gradient(ellipse at 45% 100%,#0d3764 0,transparent 68%)}.driver-number{font-size:88px;line-height:.95;font-weight:1000;font-style:italic;letter-spacing:-7px;color:transparent;-webkit-text-stroke:2px #ff1737;text-shadow:0 0 22px #ff173755}.driver-name{font-size:11px;letter-spacing:2px;color:#9bb8d0;font-style:italic;margin-left:9px}.side-quote{font-size:22px;line-height:1.1;font-style:italic;font-weight:700;margin:22px 0 8px;color:#fff}.side-caption{font-size:9px;letter-spacing:2.4px;color:#ff536b}.side-privacy{margin-top:12px;border:1px solid #1c584e!important;color:#62e9c2!important;background:#071b20!important;font-size:9px!important;letter-spacing:.8px;padding:9px 10px!important;border-radius:8px!important;white-space:normal!important}.app{width:100%;max-width:none;min-width:0;margin:0;padding:20px 24px 36px}.app>header{display:flex;justify-content:space-between;align-items:center;margin:0 0 14px;padding:0 2px 13px;border-bottom:1px solid #162a3d}.brand{display:flex;align-items:center;gap:11px}.brand .logo{width:40px;height:40px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#ff1536,#a8001d);color:#fff;font-size:18px;font-weight:950;font-style:italic;box-shadow:0 0 20px #ff173733}.app h1{font-size:20px;letter-spacing:.1px;margin:0;font-style:italic}.header-tag{display:inline-block;margin-left:8px;vertical-align:middle;font-size:8px;letter-spacing:1.5px;color:#ff6377;border:1px solid #692032;border-radius:4px;padding:4px 6px}.sub{font-size:12px;color:#8daec9;margin-top:4px}.privacy{border:1px solid #1c584e;background:#071b20;color:#62e9c2;padding:8px 11px;border-radius:7px;font-size:10px;letter-spacing:.7px}.welcome{margin:0 0 17px}.hero-banner{min-height:224px;position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;overflow:hidden;padding:26px 28px;border:1px solid #24415d;border-radius:18px;background:linear-gradient(90deg,rgba(3,10,20,.97) 0%,rgba(3,12,25,.88) 35%,rgba(3,10,20,.28) 72%,rgba(3,8,16,.68) 100%),url('./race-hero.png') center 46%/cover no-repeat;box-shadow:0 18px 40px #0005}.hero-banner:after{content:"";position:absolute;inset:auto 0 0;height:3px;background:linear-gradient(90deg,#ff1536 0 34%,#087aff 34% 68%,transparent 100%)}.hero-copy{position:relative;z-index:1;max-width:560px}.eyebrow{font-size:10px;letter-spacing:2.2px;color:#9bc8ed;font-weight:800;margin-bottom:12px}.live-dot{display:inline-block;width:7px;height:7px;background:#ff1737;border-radius:50%;margin-right:7px;box-shadow:0 0 10px #ff1737}.welcome h2{font-size:clamp(27px,3vw,40px);letter-spacing:-1.1px;line-height:1.08;margin:0 0 9px;font-weight:850}.hero-slogan{font-size:clamp(26px,3.3vw,43px);font-style:italic;font-weight:850;letter-spacing:-1.2px;text-shadow:0 2px 14px #000}.hero-slogan em{color:#ff1a3b;font-style:italic}.welcome p{font-size:12px;color:#b5cde1;margin:10px 0 0}.hero-quote{align-self:flex-start;position:relative;z-index:1;max-width:270px;text-align:right;font-size:clamp(17px,2vw,25px);font-style:italic;font-weight:750;line-height:1.15;text-shadow:0 2px 10px #000}.hero-quote small{display:block;font-size:11px;font-style:normal;letter-spacing:.5px;color:#b7d1e6;margin-top:9px}.hero-date{position:absolute;right:18px;bottom:16px;z-index:1;display:flex;align-items:center;gap:10px;background:rgba(3,10,20,.84);border:1px solid #29445d;border-radius:10px;padding:10px 12px;backdrop-filter:blur(8px)}.hero-date>span{font-size:20px}.hero-date strong,.hero-date small{display:block}.hero-date strong{font-size:10px;letter-spacing:1.2px}.hero-date small{font-size:10px;color:#9ab8d2;margin-top:3px}.grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(310px,.88fr);gap:15px;align-items:start}.stack{display:grid;gap:15px;min-width:0}.card{background:linear-gradient(145deg,rgba(7,20,34,.97),rgba(3,12,22,.98));border:1px solid #1c354b;border-radius:16px;padding:19px;box-shadow:var(--shadow);min-width:0;position:relative;overflow:hidden}.card:before{content:"";position:absolute;top:0;left:0;width:58px;height:2px;background:linear-gradient(90deg,#ff1737,transparent)}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.app h3{margin:0;font-size:17px;letter-spacing:-.2px;color:#f6f9ff}.muted{color:#8daec8;font-size:12px;line-height:1.5}.card-head .muted{margin-top:4px}.btn{border:1px solid #ff334e;border-radius:9px;padding:10px 14px;font-weight:750;background:linear-gradient(135deg,#ff1737,#d60029);color:white;box-shadow:0 5px 17px #ff17372a}.btn:hover{filter:brightness(1.12);transform:translateY(-1px)}.btn.secondary{background:#10263b;color:#dcecff;border:1px solid #28435c;box-shadow:none}.btn.ghost{background:transparent;color:#a9c4db;border:1px solid #294157;box-shadow:none}.btn.small{padding:7px 10px;font-size:11px}.btn.danger{background:#2b111b;color:#ff8093;border-color:#6d2637;box-shadow:none}.field{width:100%;border:1px solid #213c53;border-radius:9px;padding:11px 12px;color:#f4f8ff;background:#06111f;outline:none;min-width:0}.field::placeholder{color:#68839b}.field:focus{border-color:#ff3651;box-shadow:0 0 0 3px #ff17371b}.form-row{display:flex;gap:8px}.form-row>*{min-width:0}.task-form{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:10px}.task-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.task-list{display:grid;gap:7px}.task{display:flex;align-items:flex-start;gap:10px;padding:11px 10px;border:1px solid #142a3d;border-radius:10px;background:rgba(5,16,29,.75)}.task input[type=checkbox],.habit input[type=checkbox]{width:18px;height:18px;accent-color:#ff1737;flex-shrink:0;margin-top:2px}.task-main{flex:1;min-width:0}.task-title{font-size:13px;font-weight:650;overflow-wrap:anywhere}.task.done .task-title{text-decoration:line-through;color:#607b92}.task-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px;color:#8aa9c4;font-size:10px}.pill{border-radius:5px;padding:4px 7px;background:#10263a;color:#9bc7e9;font-size:10px}.pill.high{background:#35111c;color:#ff7489}.task-actions{display:flex;gap:4px}.icon-btn{border:0;background:transparent;color:#9ab9d3;padding:4px 6px;border-radius:6px}.icon-btn:hover{background:#142b40;color:#ff6478}.progress-wrap{height:7px;background:#11263a;border-radius:99px;overflow:hidden;margin:13px 0 12px}.progress{height:100%;width:0;background:linear-gradient(90deg,#ff1536,#ff6a3d);border-radius:99px;box-shadow:0 0 12px #ff173766;transition:width .2s}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{padding:12px;border-radius:10px;background:linear-gradient(135deg,#0c2033,#071321);border:1px solid #172f44}.stat-num{font-size:23px;font-weight:850;letter-spacing:-.7px;color:#f7fbff;font-variant-numeric:tabular-nums}.stat-label{font-size:10px;color:#8aa9c3;margin-top:4px}.habit-list{display:grid;gap:8px}.habit{display:flex;align-items:center;gap:10px;padding:10px 11px;border:1px solid #172e42;border-radius:10px;background:#061320}.habit .habit-name{flex:1;font-size:13px;font-weight:650}.habit .streak{font-size:10px;color:#8bb5d5;white-space:nowrap}.empty{color:#819eb7;font-size:12px;text-align:center;padding:22px 10px}.timer-card{text-align:center;background:radial-gradient(ellipse at 100% 0%,#102b4d 0,transparent 42%),linear-gradient(145deg,#081725,#030a13)}.timer-ring{width:190px;height:190px;border-radius:50%;margin:13px auto 18px;display:grid;place-items:center;background:conic-gradient(#ff1737 var(--angle,0deg),#123c72 0);position:relative;box-shadow:0 0 22px #087bff14}.timer-ring:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#06111f;border:1px solid #18354d}.timer-inner{position:relative;z-index:1}.timer-time{font-size:43px;font-weight:850;letter-spacing:-2px;font-variant-numeric:tabular-nums}.timer-label{color:#8eb1d0;font-size:12px;margin-top:3px}.timer-controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.timer-settings{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;color:#8daec8;font-size:11px}.timer-settings input{width:64px;text-align:center;padding:7px}.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}.filter-btn{border:1px solid #233d53;background:#091827;color:#91afc8;padding:7px 10px;border-radius:7px;font-size:11px}.filter-btn.active{background:#ed1234;color:#fff;border-color:#ff3b55;font-weight:750;box-shadow:0 0 12px #ff17372b}.week-toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.week-range{font-size:12px;color:#a1bfd8;min-width:120px;text-align:center}.week-board{display:grid;grid-template-columns:repeat(7,minmax(145px,1fr));gap:9px;overflow-x:auto;padding:2px 2px 10px}.day-column{border:1px solid #1a344a;border-radius:11px;padding:10px;min-height:150px;background:linear-gradient(180deg,#091a2a,#06111e)}.day-column.today{border-color:#ff2745;box-shadow:0 0 0 1px #ff17371c inset,0 0 15px #ff173710}.day-column.past .day-name{color:#6f8aa3}.day-head{display:flex;justify-content:space-between;align-items:flex-start;gap:5px;margin-bottom:10px}.day-name{font-size:11px;font-weight:800;color:#e8f3ff}.day-date{font-size:10px;color:#82a4c1;margin-top:3px}.day-count{font-size:9px;color:#a8c3d9;background:#10253a;padding:3px 6px;border-radius:5px}.day-task-list{display:grid;gap:7px}.week-task{display:flex;align-items:flex-start;gap:6px;padding:7px;border-radius:8px;background:#0b1d2d}.week-task input{width:14px;height:14px;accent-color:#ff1737;flex-shrink:0;margin:1px 0 0}.week-task-title{font-size:10px;line-height:1.35;overflow-wrap:anywhere;flex:1}.week-task.done .week-task-title{text-decoration:line-through;color:#6b849b}.week-task .pill{font-size:9px;padding:2px 5px;display:inline-block;margin-top:4px}.day-add{width:100%;border:1px dashed #29435a;color:#89abc6;background:transparent;border-radius:8px;padding:7px 4px;margin-top:9px;font-size:10px}.day-add:hover{border-color:#ff3651;color:#ff6377}.week-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}.footer{text-align:center;color:#66839b;font-size:10px;margin-top:20px;line-height:1.7}.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#11273a;color:white;padding:11px 15px;border:1px solid #34536d;border-radius:10px;font-size:12px;box-shadow:var(--shadow);z-index:20;max-width:90vw;display:none}.bottom-nav{display:none}#reflection{min-height:100px}.app .card[id="dataSection"] .btn{width:100%}
     @media(max-width:1100px){.shell{grid-template-columns:210px minmax(0,1fr)}.sidebar{padding:20px 12px}.app{padding:18px 16px 32px}.grid{grid-template-columns:minmax(0,1fr) minmax(280px,.8fr)}.hero-quote{max-width:220px}.side-brand strong{font-size:17px}}
@@ -149,170 +159,149 @@
     @media(max-width:430px){.app h1{font-size:17px}.header-tag{font-size:7px;margin-left:4px;padding:3px}.sub{font-size:10px}.hero-banner{min-height:205px}.welcome h2{font-size:27px}.hero-slogan{font-size:29px}.hero-date{padding:8px}.task-options{grid-template-columns:1fr 1fr}.task-form{grid-template-columns:minmax(0,1fr) auto}.task-form .btn{padding:10px}.card-head{gap:8px}.app h3{font-size:15px}.week-toolbar .btn{padding:7px 8px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
-
 </head>
 <body>
-  <div class="shell">
-    <aside class="sidebar" aria-label="Daylight navigation">
-      <a class="side-brand" href="#top" aria-label="Daylight home">
-        <img src="./icon.svg" alt="" class="side-logo">
-        <span><strong>DAYLIGHT</strong><small>PERSONAL PRODUCTIVITY</small></span>
-      </a>
-      <nav class="side-nav">
-        <a class="active" href="#top"><span>⌂</span>Home</a>
-        <a href="#tasksSection"><span>☷</span>Tasks</a>
-        <a href="#habitsSection"><span>♧</span>Habits</a>
-        <a href="#focusSection"><span>◴</span>Focus Timer</a>
-        <a href="#weekSection"><span>▦</span>Weekly Board</a>
-        <a href="#reflectionSection"><span>▤</span>Reflections</a>
-        <a href="#progressSection"><span>▥</span>Stats</a>
-        <a href="#dataSection"><span>↥</span>Backup & Export</a>
-      </nav>
-      <div class="side-driver">
-        <div class="driver-number">33</div>
-        <div class="driver-name">MAX<br>VERSTAPPEN</div>
-        <div class="side-quote">“No risk,<br>Full push.”</div>
-        <div class="side-caption">RACE YOUR DAY</div>
-      </div>
-      <div class="privacy side-privacy" title="Your app data stays in this browser on this device">● PRIVATE · LOCAL ONLY</div>
-    </aside>
-    <main class="app" id="top">
-    <header>
-      <div class="brand">
-        <div class="logo">33</div>
-        <div><h1>Daylight <span class="header-tag">RACE CONTROL</span></h1><div class="sub">Your day. Your pace. Full push.</div></div>
-      </div>
-      <div class="privacy" title="Your app data stays in this browser on this device">● Stored on this device</div>
-    </header>
+<div class="shell">
+<aside aria-label="APEX navigation" class="sidebar">
+<a aria-label="APEX home" class="side-brand" href="#top">
+<img alt="" class="side-logo" src="./icon.svg"/>
+<span><strong>APEX</strong><small>PERSONAL PRODUCTIVITY</small></span>
+</a>
+<nav class="side-nav">
+<a aria-label="Home" class="active" href="#top"><span>⌂</span>Home</a>
+<a href="#tasksSection"><span>☷</span>Tasks</a>
+<a href="#habitsSection"><span>♧</span>Habits</a>
+<a href="#focusSection"><span>◴</span>Focus Timer</a>
+<a href="#weekSection"><span>▦</span>Weekly Board</a>
+<a href="#reflectionSection"><span>▤</span>Reflections</a>
+<a href="#progressSection"><span>▥</span>Stats</a>
+<a href="#dataSection"><span>↥</span>Backup &amp; Export</a>
+</nav>
+<div class="side-driver">
+<div class="driver-number">33</div>
+<div class="driver-name">MAX<br/>VERSTAPPEN</div>
+<div class="side-quote">“No risk,<br/>Full push.”</div>
+<div class="side-caption">RACE YOUR DAY</div>
+</div>
+<div class="privacy side-privacy" title="Your app data stays in this browser on this device">● PRIVATE · LOCAL ONLY</div>
+</aside>
+<main class="app" id="top">
 
-    <section class="welcome hero-banner">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="live-dot"></span> DAYLIGHT RACE CONTROL</div>
-        <h2 id="greeting">Good morning.</h2>
-        <div class="hero-slogan">No risk, <em>Full push.</em></div>
-        <p id="dateLine"></p>
-      </div>
-      <div class="hero-quote">“Keep pushing.<br>That’s how you improve.”<small>— Max Verstappen</small></div>
-      <div class="hero-date"><span>🏁</span><div><strong id="raceDate">RACE DAY</strong><small>Make every stint count</small></div></div>
-    </section>
 
-    <section class="card progress-card" id="progressSection" style="margin-bottom:16px">
-      <div class="card-head">
-        <div><h3>Today's progress</h3><div class="muted" id="progressCaption">A little progress adds up.</div></div>
-        <strong id="progressPercent">0%</strong>
-      </div>
-      <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
-      <div class="stats">
-        <div class="stat"><div class="stat-num" id="tasksStat">0/0</div><div class="stat-label">Tasks completed</div></div>
-        <div class="stat"><div class="stat-num" id="habitsStat">0/0</div><div class="stat-label">Habits today</div></div>
-        <div class="stat"><div class="stat-num" id="focusStat">0m</div><div class="stat-label">Focus today</div></div>
-      </div>
-    </section>
 
-    <section class="card" id="weekSection" style="margin-bottom:16px">
-      <div class="card-head" style="align-items:flex-start">
-        <div><h3>Weekly task board</h3><div class="muted">Plan the week, one day at a time.</div></div>
-        <div class="week-toolbar">
-          <button class="btn ghost small" id="weekPrev" aria-label="Previous week">←</button>
-          <button class="btn secondary small" id="weekToday">This week</button>
-          <button class="btn ghost small" id="weekNext" aria-label="Next week">→</button>
-        </div>
-      </div>
-      <div class="week-bottom" style="margin:0 0 12px">
-        <div class="week-range" id="weekRange" aria-live="polite"></div>
-        <div class="muted">Select a day to add a task. Swipe sideways on mobile.</div>
-      </div>
-      <div class="week-board" id="weekBoard" aria-label="Tasks grouped by day"></div>
-      <div class="week-bottom">
-        <span class="muted" id="weekSummary">Tasks scheduled this week</span>
-        <button class="btn ghost small" id="showUnscheduled">Show unscheduled tasks</button>
-      </div>
-      <div id="unscheduledPanel" hidden style="margin-top:12px"></div>
-    </section>
 
-    <div class="grid">
-      <div class="stack">
-        <section class="card section-anchor" id="tasksSection">
-          <div class="card-head"><div><h3>Tasks</h3><div class="muted">Choose what matters next.</div></div><span class="pill" id="taskCount">0 tasks</span></div>
-          <form id="taskForm">
-            <div class="task-form">
-              <input class="field" id="taskInput" maxlength="140" placeholder="Add a task…" required aria-label="Task title">
-              <button class="btn" type="submit">Add</button>
-            </div>
-            <div class="task-options">
-              <select class="field" id="taskPriority" aria-label="Priority"><option value="Normal">Normal priority</option><option value="High">High priority</option><option value="Low">Low priority</option></select>
-              <input class="field" type="date" id="taskDate" aria-label="Due date">
-            </div>
-          </form>
-          <div class="filter-row">
-            <button class="filter-btn active" data-filter="active">Active</button>
-            <button class="filter-btn" data-filter="today">Today</button>
-            <button class="filter-btn" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="done">Completed</button>
-          </div>
-          <div class="task-list" id="taskList"></div>
-        </section>
 
-        <section class="card section-anchor" id="habitsSection">
-          <div class="card-head"><div><h3>Habits</h3><div class="muted">Small actions, repeated.</div></div><span class="pill" id="habitCount">0 habits</span></div>
-          <form class="form-row" id="habitForm" style="margin-bottom:14px">
-            <input class="field" id="habitInput" maxlength="80" placeholder="New habit…" required aria-label="Habit name">
-            <button class="btn" type="submit">Add</button>
-          </form>
-          <div class="habit-list" id="habitList"></div>
-        </section>
-      </div>
 
-      <div class="stack">
-        <section class="card timer-card section-anchor" id="focusSection">
-          <div class="card-head"><div style="text-align:left"><h3>Focus session</h3><div class="muted">One thing at a time.</div></div><span class="pill" id="sessionCount">0 sessions</span></div>
-          <div class="timer-ring" id="timerRing" style="--angle:0deg">
-            <div class="timer-inner"><div class="timer-time" id="timerTime">25:00</div><div class="timer-label" id="timerLabel">Ready to focus</div></div>
-          </div>
-          <div class="timer-controls">
-            <button class="btn" id="startPause">Start focus</button>
-            <button class="btn secondary" id="resetTimer">Reset</button>
-            <button class="btn ghost" id="finishTimer">Finish</button>
-          </div>
-          <div class="timer-settings">
-            <label for="focusMinutes">Focus</label><input class="field" id="focusMinutes" type="number" min="1" max="120" value="25" aria-label="Focus minutes">
-            <span>minutes</span>
-          </div>
-          <p class="muted" style="margin:13px 0 0">Keep this page open for the most reliable timer. iOS may suspend background browser activity.</p>
-        </section>
-
-        <section class="card" id="reflectionSection">
-          <div class="card-head"><div><h3>Quick review</h3><div class="muted">A simple check-in for today.</div></div></div>
-          <label class="muted" for="reflection">What went well? What should I improve?</label>
-          <textarea class="field" id="reflection" rows="4" maxlength="1200" placeholder="Write a few lines for yourself…" style="resize:vertical;margin-top:8px"></textarea>
-          <div class="muted" style="margin-top:7px">Saved automatically on this device.</div>
-        </section>
-
-        <section class="card" id="dataSection">
-          <div class="card-head"><div><h3>Your data</h3><div class="muted">You control your information.</div></div></div>
-          <div style="display:grid;gap:9px">
-            <button class="btn secondary" id="exportBtn">Export backup (JSON)</button>
-            <label class="btn ghost" for="importFile" style="text-align:center">Import backup (JSON)</label>
-            <input type="file" id="importFile" accept="application/json,.json" hidden>
-            <button class="btn danger" id="clearBtn">Delete all app data</button>
-          </div>
-          <p class="muted" style="line-height:1.5;margin-bottom:0">This data is stored in this browser profile only. It does not automatically sync to your iPhone or another browser.</p>
-        </section>
-      </div>
-    </div>
-    <div class="footer">Daylight · Private by default<br>Local browser storage is not encrypted. Export backups somewhere safe.</div>
-  </main>
-
-  <nav class="bottom-nav" aria-label="Main navigation">
-    <a href="#weekSection"><span>▦</span>Week</a>
-    <a href="#tasksSection"><span>✓</span>Tasks</a>
-    <a href="#habitsSection"><span>↗</span>Habits</a>
-    <a href="#focusSection"><span>◷</span>Focus</a>
-    <a href="#tasksSection" id="navToday"><span>⌂</span>Today</a>
-  </nav>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  </div>
-
+<header>
+<div class="brand">
+<div class="logo">33</div>
+<div><h1>APEX <span class="header-tag">RACE CONTROL</span></h1><div class="sub">Your day. Your pace. Full push.</div></div>
+</div>
+<div class="privacy" title="Your app data stays in this browser on this device">● Stored on this device</div>
+</header><section class="welcome hero-banner">
+<div class="hero-copy">
+<div class="eyebrow"><span class="live-dot"></span> APEX RACE CONTROL</div>
+<h2 id="greeting">Good morning.</h2>
+<div class="hero-slogan">No risk, <em>Full push.</em></div>
+<p id="dateLine"></p>
+</div>
+<div class="hero-quote">“Keep pushing.<br/>That’s how you improve.<small>— Max Verstappen</small></div>
+<div class="hero-date"><span>🏁</span><div><strong id="raceDate">RACE DAY</strong><small>Make every stint count</small></div></div>
+</section><div class="apex-primary-grid"><div class="apex-column"><section class="card section-anchor" id="tasksSection">
+<div class="card-head"><div><h3>Tasks</h3><div class="muted">Choose what matters next.</div></div><span class="pill" id="taskCount">0 tasks</span></div>
+<form id="taskForm">
+<div class="task-form">
+<input aria-label="Task title" class="field" id="taskInput" maxlength="140" placeholder="Add a task…" required=""/>
+<button class="btn" type="submit">Add</button>
+</div>
+<div class="task-options">
+<select aria-label="Priority" class="field" id="taskPriority"><option value="Normal">Normal priority</option><option value="High">High priority</option><option value="Low">Low priority</option></select>
+<input aria-label="Due date" class="field" id="taskDate" type="date"/>
+</div>
+</form>
+<div class="filter-row">
+<button class="filter-btn active" data-filter="active">Active</button>
+<button class="filter-btn" data-filter="today">Today</button>
+<button class="filter-btn" data-filter="all">All</button>
+<button class="filter-btn" data-filter="done">Completed</button>
+</div>
+<div class="task-list" id="taskList"></div>
+</section></div><div class="apex-column"><section class="card timer-card section-anchor" id="focusSection">
+<div class="card-head"><div style="text-align:left"><h3>Focus session</h3><div class="muted">One thing at a time.</div></div><span class="pill" id="sessionCount">0 sessions</span></div>
+<div class="timer-ring" id="timerRing" style="--angle:0deg">
+<div class="timer-inner"><div class="timer-time" id="timerTime">25:00</div><div class="timer-label" id="timerLabel">Ready to focus</div></div>
+</div>
+<div class="timer-controls">
+<button class="btn" id="startPause">Start focus</button>
+<button class="btn secondary" id="resetTimer">Reset</button>
+<button class="btn ghost" id="finishTimer">Finish</button>
+</div>
+<div class="timer-settings">
+<label for="focusMinutes">Focus</label><input aria-label="Focus minutes" class="field" id="focusMinutes" max="120" min="1" type="number" value="25"/>
+<span>minutes</span>
+</div>
+<p class="muted" style="margin:13px 0 0">Keep this page open for the most reliable timer. iOS may suspend background browser activity.</p>
+</section></div></div><div class="apex-lower-grid"><section class="card section-anchor" id="habitsSection">
+<div class="card-head"><div><h3>Habits</h3><div class="muted">Small actions, repeated.</div></div><span class="pill" id="habitCount">0 habits</span></div>
+<form class="form-row" id="habitForm" style="margin-bottom:14px">
+<input aria-label="Habit name" class="field" id="habitInput" maxlength="80" placeholder="New habit…" required=""/>
+<button class="btn" type="submit">Add</button>
+</form>
+<div class="habit-list" id="habitList"></div>
+</section><section class="card progress-card" id="progressSection" style="margin-bottom:16px">
+<div class="card-head">
+<div><h3>Today's progress</h3><div class="muted" id="progressCaption">A little progress adds up.</div></div>
+<strong id="progressPercent">0%</strong>
+</div>
+<div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+<div class="stats">
+<div class="stat"><div class="stat-num" id="tasksStat">0/0</div><div class="stat-label">Tasks completed</div></div>
+<div class="stat"><div class="stat-num" id="habitsStat">0/0</div><div class="stat-label">Habits today</div></div>
+<div class="stat"><div class="stat-num" id="focusStat">0m</div><div class="stat-label">Focus today</div></div>
+</div>
+</section><section class="card apex-quick-actions"><div class="card-head"><div><h3>Quick Actions</h3><div class="muted">Keep moving.</div></div></div><div class="quick-grid"><button class="quick-action" onclick="document.getElementById('taskInput').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=&gt;document.getElementById('taskInput').focus(),250);" type="button"><span class="quick-icon">✓</span><span>New Task</span></button><button class="quick-action" onclick="document.getElementById('habitInput').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=&gt;document.getElementById('habitInput').focus(),250);" type="button"><span class="quick-icon">▥</span><span>New Habit</span></button><button class="quick-action" onclick="document.getElementById('startPause').click();" type="button"><span class="quick-icon">◴</span><span>Start Focus</span></button><button class="quick-action" onclick="document.getElementById('reflection').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=&gt;document.getElementById('reflection').focus(),250);" type="button"><span class="quick-icon">▤</span><span>New Note</span></button><button class="quick-action" onclick="document.getElementById('exportBtn').click();" type="button"><span class="quick-icon">⇧</span><span>Backup Data</span></button><button class="quick-action" onclick="document.getElementById('importFile').click();" type="button"><span class="quick-icon">☁</span><span>Import Data</span></button></div></section></div><section class="card" id="weekSection" style="margin-bottom:16px">
+<div class="card-head" style="align-items:flex-start">
+<div><h3>Weekly task board</h3><div class="muted">Plan the week, one day at a time.</div></div>
+<div class="week-toolbar">
+<button aria-label="Previous week" class="btn ghost small" id="weekPrev">←</button>
+<button class="btn secondary small" id="weekToday">This week</button>
+<button aria-label="Next week" class="btn ghost small" id="weekNext">→</button>
+</div>
+</div>
+<div class="week-bottom" style="margin:0 0 12px">
+<div aria-live="polite" class="week-range" id="weekRange"></div>
+<div class="muted">Select a day to add a task. Swipe sideways on mobile.</div>
+</div>
+<div aria-label="Tasks grouped by day" class="week-board" id="weekBoard"></div>
+<div class="week-bottom">
+<span class="muted" id="weekSummary">Tasks scheduled this week</span>
+<button class="btn ghost small" id="showUnscheduled">Show unscheduled tasks</button>
+</div>
+<div hidden="" id="unscheduledPanel" style="margin-top:12px"></div>
+</section><div class="apex-utility-grid"><section class="card" id="reflectionSection">
+<div class="card-head"><div><h3>Quick review</h3><div class="muted">A simple check-in for today.</div></div></div>
+<label class="muted" for="reflection">What went well? What should I improve?</label>
+<textarea class="field" id="reflection" maxlength="1200" placeholder="Write a few lines for yourself…" rows="4" style="resize:vertical;margin-top:8px"></textarea>
+<div class="muted" style="margin-top:7px">Saved automatically on this device.</div>
+</section><section class="card" id="dataSection">
+<div class="card-head"><div><h3>Your data</h3><div class="muted">You control your information.</div></div></div>
+<div style="display:grid;gap:9px">
+<button class="btn secondary" id="exportBtn">Export backup (JSON)</button>
+<label class="btn ghost" for="importFile" style="text-align:center">Import backup (JSON)</label>
+<input accept="application/json,.json" hidden="" id="importFile" type="file"/>
+<button class="btn danger" id="clearBtn">Delete all app data</button>
+</div>
+<p class="muted" style="line-height:1.5;margin-bottom:0">This data is stored in this browser profile only. It does not automatically sync to your iPhone or another browser.</p>
+</section></div><div class="footer">APEX · Private by default<br/>Local browser storage is not encrypted. Export backups somewhere safe.</div></main>
+<nav aria-label="Main navigation" class="bottom-nav">
+<a href="#weekSection"><span>▦</span>Week</a>
+<a href="#tasksSection"><span>✓</span>Tasks</a>
+<a href="#habitsSection"><span>↗</span>Habits</a>
+<a href="#focusSection"><span>◷</span>Focus</a>
+<a href="#tasksSection" id="navToday"><span>⌂</span>Today</a>
+</nav>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+</div>
 <script>
 (() => {
   "use strict";
@@ -634,7 +623,7 @@
   });
   document.getElementById("exportBtn").addEventListener("click", () => {
     const blob = new Blob([JSON.stringify({version:1, exportedAt:new Date().toISOString(), data}, null, 2)], {type:"application/json"});
-    const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href=url; a.download=`daylight-backup-${today()}.json`; a.click(); URL.revokeObjectURL(url);
+    const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href=url; a.download=`apex-backup-${today()}.json`; a.click(); URL.revokeObjectURL(url);
     showToast("Backup exported. Store it somewhere safe.");
   });
   document.getElementById("importFile").addEventListener("change", async e => {
@@ -645,11 +634,11 @@
       if (!confirm("Import this backup and replace the data currently in this browser? Export your current data first if you need it.")) { e.target.value=""; return; }
       data = { tasks:incoming.tasks, habits:incoming.habits, sessions:incoming.sessions, reflections:incoming.reflections && typeof incoming.reflections==="object" ? incoming.reflections : {}, settings:{focusMinutes:Number(incoming.settings?.focusMinutes)||25} };
       save(); remaining=data.settings.focusMinutes*60; renderAll(); showToast("Backup imported.");
-    } catch (err) { showToast("That file is not a valid Daylight backup."); }
+    } catch (err) { showToast("That file is not a valid APEX backup."); }
     e.target.value="";
   });
   document.getElementById("clearBtn").addEventListener("click", () => {
-    if (!confirm("Permanently delete all Daylight tasks, habits, focus history and reflections from this browser? Export a backup first if needed.")) return;
+    if (!confirm("Permanently delete all APEX tasks, habits, focus history and reflections from this browser? Export a backup first if needed.")) return;
     data=defaultData(); save(); running=false; endAt=null; stopTicker(); remaining=25*60; document.getElementById("focusMinutes").value=25; renderAll(); showToast("App data deleted from this browser.");
   });
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {

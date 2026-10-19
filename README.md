@@ -1,20 +1,17 @@
-# Daylight — F1 Race Control Redesign
+# APEX — F1 Race Control Productivity PWA
 
-This package updates the existing Daylight PWA with the approved Max Verstappen / F1-inspired visual theme.
+A responsive F1-inspired redesign of the existing local-first productivity app.
 
-## Preserved
-- Existing `daylight-pwa-data-v1` localStorage key and data shape
-- Tasks, priorities, due dates, completion, editing and deletion
-- Monday-first weekly task board, navigation, scheduling and unscheduled tasks
-- Habits and streaks
-- Focus timer and session history
-- Daily reflections
+## Preserved behavior
+- Existing localStorage key `daylight-pwa-data-v1` and data shape (intentionally unchanged so existing browser data remains available)
+- Tasks, priorities, due dates, completion, editing/deletion, and Monday-first weekly board
+- Habits, streaks, focus timer/session history, and daily reflections
 - JSON backup export/import and local data deletion
-- Local-only storage and service-worker offline support
-- SVG app icon (`icon.svg`) referenced from both `index.html` and `manifest.json`
+- Local-only storage and service-worker offline shell
+- Existing SVG app icon and its references
 
 ## Deploy
-Replace `index.html`, `manifest.json`, `sw.js`, and `icon.svg` in the repository root, and add `race-hero.png`. Commit and push to `main`. The service-worker cache name is bumped so the redesigned shell is refreshed after deployment.
+Replace `index.html`, `manifest.json`, `sw.js`, and `icon.svg` in the repository root, and add/replace `race-hero.png`. Commit the files to `main` and wait for GitHub Pages to deploy.
 
 ## Important
-The app does not migrate, clear, or rename localStorage. Existing data remains under `daylight-pwa-data-v1`. Export a JSON backup before deployment as a precaution.
+The storage key is intentionally still `daylight-pwa-data-v1`; do not change it during this rebrand. Export a JSON backup before deploying as a precaution. Browser data remains local to each browser/device and is not automatically synchronized.

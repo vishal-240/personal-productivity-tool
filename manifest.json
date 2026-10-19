@@ -1,13 +1,18 @@
 {
-  "name": "Daylight — Race Control",
-  "short_name": "Daylight",
-  "description": "A private, local-first productivity cockpit.",
+  "name": "APEX — Personal Productivity",
+  "short_name": "APEX",
+  "description": "APEX — your personal F1-inspired productivity cockpit. Private and local-first.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#030914",
   "theme_color": "#030914",
   "icons": [
-    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
   ]
 }
