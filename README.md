@@ -30,3 +30,9 @@ Focus timing uses timestamps rather than relying only on interval ticks. Mobile 
 - Mobile hero no longer overlaps the date card.
 - Service worker cache `apex-race-control-v4`; page loads are now network-first so updates are picked up on the next open (offline still falls back to the cached copy).
 - Data layer and the `daylight-pwa-data-v1` key are unchanged.
+
+## v5 changes
+- Theme: Oracle Red Bull Racing / Max Verstappen only (navy, racing red, sun-yellow accents).
+- Motion: staggered page entrances, count-up numbers, animated progress ring (yellow→red, pulses at 100%), focus timer as a rev-gauge arc with a shift-light pulse in the last 10 seconds, self-drawing bar charts.
+- Home is a bento layout on desktop. All motion switches off for users with "reduce motion" enabled.
+- Service worker cache `apex-race-control-v5`. Data layer and `daylight-pwa-data-v1` unchanged.
